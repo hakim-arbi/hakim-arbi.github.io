@@ -1,788 +1,863 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Mohamed Hakim Arbi — Full Stack Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0A1628;
+  --navy-mid:#142240;
+  --navy-light:#1E3461;
+  --accent:#2563EB;
+  --accent-light:#3B82F6;
+  --gold:#F59E0B;
+  --white:#FFFFFF;
+  --off-white:#F8FAFC;
+  --text-primary:#0F172A;
+  --text-secondary:#475569;
+  --text-muted:#94A3B8;
+  --border:#E2E8F0;
+  --card-bg:#FFFFFF;
+  --section-bg:#F1F5F9;
+}
+[data-theme="dark"]{
+  --navy:#0A1628;
+  --navy-mid:#0F1F3D;
+  --accent:#3B82F6;
+  --accent-light:#60A5FA;
+  --white:#FFFFFF;
+  --off-white:#0F172A;
+  --text-primary:#F1F5F9;
+  --text-secondary:#94A3B8;
+  --text-muted:#64748B;
+  --border:#1E3461;
+  --card-bg:#0F1F3D;
+  --section-bg:#070E1C;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--off-white);
+  color:var(--text-primary);
+  line-height:1.6;
+  transition:background .3s,color .3s;
+}
 
-  <title>DevFolio Bootstrap Portfolio Template - Index</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(10,22,40,0.96);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  padding:0 2rem;
+  display:flex;align-items:center;justify-content:space-between;height:64px;
+}
+.nav-logo{
+  font-family:'Playfair Display',serif;
+  color:var(--white);font-size:1.1rem;font-weight:700;letter-spacing:0.01em;
+  text-decoration:none;
+}
+.nav-logo span{color:var(--accent-light);}
+.nav-links{display:flex;align-items:center;gap:0.25rem;}
+.nav-links a{
+  color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.85rem;
+  font-weight:500;padding:0.4rem 0.75rem;border-radius:6px;
+  transition:color .2s,background .2s;
+}
+.nav-links a:hover{color:#fff;background:rgba(255,255,255,0.08);}
+.nav-right{display:flex;align-items:center;gap:0.75rem;}
+.lang-btn{
+  background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);
+  color:rgba(255,255,255,0.85);font-size:0.78rem;font-weight:600;
+  padding:0.3rem 0.65rem;border-radius:6px;cursor:pointer;
+  transition:all .2s;letter-spacing:0.05em;font-family:'Inter',sans-serif;
+}
+.lang-btn:hover{background:rgba(255,255,255,0.15);}
+.theme-btn{
+  background:none;border:none;color:rgba(255,255,255,0.7);
+  cursor:pointer;font-size:1rem;padding:0.3rem;border-radius:6px;
+  transition:color .2s;
+}
+.theme-btn:hover{color:#fff;}
 
-  <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+/* HERO */
+.hero{
+  min-height:100vh;
+  background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 60%,#0D2952 100%);
+  display:flex;align-items:center;
+  padding:80px 2rem 4rem;
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 60% at 70% 50%,rgba(37,99,235,0.12) 0%,transparent 70%);
+  pointer-events:none;
+}
+.hero-grid{
+  max-width:1100px;margin:0 auto;width:100%;
+  display:grid;grid-template-columns:1fr 340px;gap:4rem;align-items:center;
+}
+.hero-text h1{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.2rem,4.5vw,3.4rem);
+  color:var(--white);line-height:1.15;font-weight:700;
+  margin-bottom:0.5rem;
+}
+.hero-text h1 span{color:var(--accent-light);}
+.hero-subtitle{
+  font-size:1rem;color:rgba(255,255,255,0.55);
+  font-weight:500;letter-spacing:0.04em;text-transform:uppercase;
+  margin-bottom:1.25rem;
+}
+.hero-desc{
+  font-size:1.05rem;color:rgba(255,255,255,0.72);
+  line-height:1.75;max-width:520px;margin-bottom:2rem;
+}
+.hero-tags{display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:2.25rem;}
+.hero-tag{
+  background:rgba(59,130,246,0.15);border:1px solid rgba(59,130,246,0.3);
+  color:var(--accent-light);font-size:0.78rem;font-weight:600;
+  padding:0.3rem 0.75rem;border-radius:999px;letter-spacing:0.03em;
+}
+.hero-cta{display:flex;gap:0.75rem;flex-wrap:wrap;}
+.btn{
+  display:inline-flex;align-items:center;gap:0.4rem;
+  padding:0.7rem 1.4rem;border-radius:8px;font-size:0.9rem;
+  font-weight:600;text-decoration:none;transition:all .2s;cursor:pointer;border:none;
+  font-family:'Inter',sans-serif;
+}
+.btn-primary{background:var(--accent);color:#fff;}
+.btn-primary:hover{background:#1D4ED8;transform:translateY(-1px);}
+.btn-outline{
+  background:transparent;color:rgba(255,255,255,0.85);
+  border:1.5px solid rgba(255,255,255,0.25);
+}
+.btn-outline:hover{border-color:rgba(255,255,255,0.6);background:rgba(255,255,255,0.06);}
 
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+/* Photo */
+.hero-photo{display:flex;justify-content:center;position:relative;}
+.photo-frame{
+  width:280px;height:320px;border-radius:16px;overflow:hidden;
+  border:3px solid rgba(59,130,246,0.4);
+  box-shadow:0 0 0 1px rgba(255,255,255,0.05),0 32px 64px rgba(0,0,0,0.5);
+  position:relative;
+}
+.photo-frame img{width:100%;height:100%;object-fit:cover;object-position:top center;}
+.photo-badge{
+  position:absolute;bottom:-12px;left:50%;transform:translateX(-50%);
+  background:var(--accent);color:#fff;font-size:0.75rem;font-weight:700;
+  padding:0.3rem 1rem;border-radius:999px;white-space:nowrap;
+  box-shadow:0 4px 16px rgba(37,99,235,0.4);letter-spacing:0.04em;
+}
 
-  <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
+/* SECTIONS */
+.section{padding:5rem 2rem;}
+.section-alt{background:var(--section-bg);}
+.container{max-width:1100px;margin:0 auto;}
+.section-header{margin-bottom:3rem;}
+.section-label{
+  font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:0.5rem;
+}
+.section-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;color:var(--text-primary);
+}
+.section-line{
+  width:40px;height:3px;background:var(--accent);border-radius:2px;margin-top:0.75rem;
+}
 
-  <!-- =======================================================
-  * Template Name: DevFolio - v4.10.0
-  * Template URL: https://bootstrapmade.com/devfolio-bootstrap-portfolio-html-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
+.about-text p{color:var(--text-secondary);line-height:1.8;margin-bottom:1rem;font-size:0.95rem;}
+.about-stats{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.stat-card{
+  background:var(--card-bg);border:1px solid var(--border);
+  border-radius:12px;padding:1.25rem;text-align:center;
+  box-shadow:0 1px 4px rgba(0,0,0,0.04);
+}
+[data-theme="dark"] .stat-card{box-shadow:0 1px 8px rgba(0,0,0,0.3);}
+.stat-num{
+  font-family:'Playfair Display',serif;
+  font-size:2rem;font-weight:700;color:var(--accent);margin-bottom:0.2rem;
+}
+.stat-label{font-size:0.78rem;color:var(--text-muted);font-weight:500;}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;}
+.skill-card{
+  background:var(--card-bg);border:1px solid var(--border);
+  border-radius:14px;padding:1.5rem;
+  box-shadow:0 1px 4px rgba(0,0,0,0.04);
+  transition:transform .2s,box-shadow .2s;
+}
+[data-theme="dark"] .skill-card{box-shadow:0 2px 12px rgba(0,0,0,0.3);}
+.skill-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.08);}
+[data-theme="dark"] .skill-card:hover{box-shadow:0 8px 24px rgba(0,0,0,0.5);}
+.skill-icon{font-size:1.5rem;margin-bottom:0.75rem;}
+.skill-cat{font-size:0.78rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.5rem;}
+.skill-title{font-size:1rem;font-weight:600;color:var(--text-primary);margin-bottom:0.75rem;}
+.skill-tags{display:flex;flex-wrap:wrap;gap:0.35rem;}
+.skill-tag{
+  background:var(--section-bg);border:1px solid var(--border);
+  color:var(--text-secondary);font-size:0.73rem;font-weight:500;
+  padding:0.2rem 0.55rem;border-radius:5px;
+}
+[data-theme="dark"] .skill-tag{background:rgba(255,255,255,0.04);}
+
+/* PROJECTS */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem;}
+.project-card{
+  background:var(--card-bg);border:1px solid var(--border);
+  border-radius:14px;padding:1.75rem;
+  box-shadow:0 1px 4px rgba(0,0,0,0.04);
+  transition:transform .2s,box-shadow .2s;display:flex;flex-direction:column;
+}
+[data-theme="dark"] .project-card{box-shadow:0 2px 12px rgba(0,0,0,0.3);}
+.project-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.1);}
+[data-theme="dark"] .project-card:hover{box-shadow:0 8px 24px rgba(0,0,0,0.5);}
+.project-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:0.75rem;}
+.project-type{
+  font-size:0.7rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;
+  color:var(--accent);background:rgba(37,99,235,0.08);
+  border:1px solid rgba(37,99,235,0.2);padding:0.2rem 0.6rem;border-radius:5px;
+}
+.project-title{font-size:1.05rem;font-weight:700;color:var(--text-primary);margin-bottom:0.5rem;}
+.project-desc{font-size:0.88rem;color:var(--text-secondary);line-height:1.7;flex:1;margin-bottom:1rem;}
+.project-stack{display:flex;flex-wrap:wrap;gap:0.35rem;}
+.stack-tag{
+  background:var(--navy);color:var(--accent-light);
+  font-size:0.7rem;font-weight:600;padding:0.2rem 0.55rem;
+  border-radius:5px;letter-spacing:0.03em;
+}
+[data-theme="dark"] .stack-tag{background:rgba(37,99,235,0.15);}
+
+/* EXPERIENCE */
+.timeline{position:relative;padding-left:2rem;}
+.timeline::before{
+  content:'';position:absolute;left:0;top:4px;bottom:0;
+  width:2px;background:var(--border);
+}
+[data-theme="dark"] .timeline::before{background:var(--border);}
+.timeline-item{position:relative;padding-bottom:2.5rem;}
+.timeline-item:last-child{padding-bottom:0;}
+.timeline-dot{
+  position:absolute;left:-2.45rem;top:4px;
+  width:14px;height:14px;border-radius:50%;
+  background:var(--accent);border:3px solid var(--off-white);
+  box-shadow:0 0 0 2px var(--accent);
+}
+[data-theme="dark"] .timeline-dot{border-color:var(--section-bg);}
+.timeline-date{
+  font-size:0.75rem;font-weight:700;color:var(--accent);
+  letter-spacing:0.06em;text-transform:uppercase;margin-bottom:0.3rem;
+}
+.timeline-role{font-size:1rem;font-weight:700;color:var(--text-primary);margin-bottom:0.15rem;}
+.timeline-org{font-size:0.85rem;color:var(--text-muted);font-weight:500;margin-bottom:0.6rem;}
+.timeline-desc{font-size:0.88rem;color:var(--text-secondary);line-height:1.7;}
+.timeline-desc li{margin-bottom:0.25rem;padding-left:0.25rem;}
+
+/* EDUCATION */
+.edu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem;}
+.edu-card{
+  background:var(--card-bg);border:1px solid var(--border);
+  border-radius:14px;padding:1.5rem;
+  box-shadow:0 1px 4px rgba(0,0,0,0.04);
+}
+[data-theme="dark"] .edu-card{box-shadow:0 2px 12px rgba(0,0,0,0.3);}
+.edu-year{font-size:0.75rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.4rem;}
+.edu-degree{font-size:0.95rem;font-weight:700;color:var(--text-primary);margin-bottom:0.25rem;line-height:1.4;}
+.edu-school{font-size:0.83rem;color:var(--text-muted);font-weight:500;}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
+.contact-info{display:flex;flex-direction:column;gap:1rem;}
+.contact-item{
+  display:flex;align-items:center;gap:0.85rem;
+  background:var(--card-bg);border:1px solid var(--border);
+  border-radius:10px;padding:0.9rem 1.1rem;text-decoration:none;
+  transition:border-color .2s;
+}
+[data-theme="dark"] .contact-item{box-shadow:0 2px 8px rgba(0,0,0,0.3);}
+.contact-item:hover{border-color:var(--accent);}
+.contact-icon{
+  width:36px;height:36px;border-radius:8px;
+  background:rgba(37,99,235,0.1);border:1px solid rgba(37,99,235,0.2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1rem;flex-shrink:0;
+}
+.contact-text{display:flex;flex-direction:column;}
+.contact-label{font-size:0.7rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;}
+.contact-value{font-size:0.88rem;font-weight:600;color:var(--text-primary);}
+.contact-desc{color:var(--text-secondary);line-height:1.8;font-size:0.95rem;}
+.contact-desc p{margin-bottom:0.75rem;}
+.lang-badges{display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:1rem;}
+.lang-badge{
+  background:var(--card-bg);border:1px solid var(--border);
+  padding:0.35rem 0.85rem;border-radius:8px;
+  font-size:0.82rem;font-weight:600;color:var(--text-secondary);
+}
+
+/* FOOTER */
+footer{
+  background:var(--navy);color:rgba(255,255,255,0.5);
+  text-align:center;padding:2rem;font-size:0.82rem;
+}
+footer a{color:var(--accent-light);text-decoration:none;}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .hero-grid{grid-template-columns:1fr;gap:2.5rem;text-align:center;}
+  .hero-photo{order:-1;}
+  .hero-desc,.hero-cta,.hero-tags{justify-content:center;}
+  .about-grid,.contact-grid{grid-template-columns:1fr;}
+  nav{padding:0 1rem;}
+  .nav-links{display:none;}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;}}
+</style>
 </head>
+<body data-theme="light">
 
-<body>
+<nav>
+  <a href="#" class="nav-logo">MH<span>.</span>Arbi</a>
+  <div class="nav-links">
+    <a href="#about" data-i18n="nav_about">À propos</a>
+    <a href="#skills" data-i18n="nav_skills">Compétences</a>
+    <a href="#projects" data-i18n="nav_projects">Projets</a>
+    <a href="#experience" data-i18n="nav_experience">Expérience</a>
+    <a href="#contact" data-i18n="nav_contact">Contact</a>
+  </div>
+  <div class="nav-right">
+    <button class="lang-btn" onclick="toggleLang()" id="langBtn">EN</button>
+    <button class="theme-btn" onclick="toggleTheme()" id="themeBtn" title="Toggle theme">◐</button>
+  </div>
+</nav>
 
-  <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top">
-    <div class="container d-flex align-items-center justify-content-between">
+<section class="hero">
+  <div class="hero-grid">
+    <div class="hero-text">
+      <p class="hero-subtitle" data-i18n="hero_subtitle">Full Stack Developer · Software Engineer</p>
+      <h1>Mohamed Hakim <span>Arbi</span></h1>
+      <p class="hero-desc" data-i18n="hero_desc">
+        Ingénieur en Génie Logiciel avec un Master en Systèmes Intelligents. Passionné par le développement de solutions microservices modernes, l'architecture cloud et les applications orientées performance.
+      </p>
+      <div class="hero-tags">
+        <span class="hero-tag">Spring Boot</span>
+        <span class="hero-tag">Angular</span>
+        <span class="hero-tag">React</span>
+        <span class="hero-tag">MongoDB</span>
+        <span class="hero-tag">Docker</span>
+        <span class="hero-tag">Kubernetes</span>
+        <span class="hero-tag">AWS</span>
+        <span class="hero-tag">Deep Learning</span>
+      </div>
+      <div class="hero-cta">
+        <a href="#contact" class="btn btn-primary" data-i18n="hero_cta1">Me contacter</a>
+        <a href="#projects" class="btn btn-outline" data-i18n="hero_cta2">Voir mes projets</a>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <div class="photo-frame">
+        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBAUEBAYFBQUGBgYHCQ4JCQgICRINDQoOFRIWFhUSFBQXGiEcFxgfGRQUHScdHyIjJSUlFhwpLCgkKyEkJST/2wBDAQYGBgkICREJCREkGBQYJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCT/wAARCAF8AT0DASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD0DGKQ1JjNIRWZoNHSmmn7aQigBtJjNOIpvSgBCKTFPpCKYDCoNG3FOxQaAGEZpAKfSYoAQjimEVIRTCKQDMU2T7uKkApki8UAZs681FirEw5qHFIAAFBHFLRigBucUhqTFIVoAjHWrlt1FVgOau2q1UdyWWlGakx8tCLin44rQgk04Ymz711Vv/qxXL6eP33411MB/ditaexEyQmmmlNJWpmzM1kf6OfpXjviwf6UPrXsmrjNu30rx7xYv+k596pCZjxfdAr1b4ari2WvKYhxXq3w1/49lrZGEj1e2H7sVLiorX/Vipq53ubrYMUUYoANSMDzSYp2KMUCPLAKCKdtoxXGdgykxT9tG2gCMimGpitNKCgCMClxTtuKXbQAwim4p5FJigBm2gDFSEUmKAGkcUwipSMCm0DIsU2RflqUimuPloAzZl5NQ7RVmYfNUJFSAzGaXbTgMUcdqAExSYpVIboQfoc07FMCIDmrltwarbas22SacdyZF9RUmOKYoqXHy1qQSaeP31dLB/qxXN2H+urpoB+7FaUyJj9uaMU4UYrUyMzVlJt2+leQ+LFxPz617Fqoxbn6V5D4uXFxz0zVITMKMcV6j8M/9QK8whGRXqPw1GIBWy2MZHq9qP3YqbFR2o+Spa5XubrYKBRRSHYKKKKAPLqdimg07Ncp1CUUE0nagLgQKbTsZpMYosFxppuac1NAoC4ZooxR0pAJikwadnikpjDrTSKdRikIZiqmpaha6Zb+bcyqgY7VHdz6AVX1/XbXQoPNuJVjG1nJPZVxn+YH414H4r8fy3Vy15PMJHmjZURshY0JOFA/LPqe9BSVzutT+J5ge4W0tPP/AH5EckjjaEwMbQMFiSGPXHvWfJ8QNX1QxRQoNNj2b5LnYXdl6/KgBwOoz+teUxa/ceaNQubuDYvyoiqCSccfKQBjpmr+kTme7F3cFkZ38xpJGPlxqRgsVzyfTNFh6HWp428Sagsk0OomGzifbHLOojMo7nvu9O9Vtf1PW7T7PqNxd3OyYZ8u1jPKnjJOSTn3qrqHjmbXb0vDZ2MUCIlvbbyAFXIHPrgDkDjnPNZ01rcaVJcasL1btoTt85NzIjN0VS3JPWgCxpHjbWri9JspbxIowH4QeWiD++B2x3rSs/i5r1okyxWtjKpbIuHJIJ9uQD9KyJW8TiJIr5xYWdycrCx2Sug7lRzjr1wK0pr6y1KCLS7JnhgCGEuVzKW3E7gQAfTjsKAOr0r4tST3EIv7X7JA2FMroSGbvgrwPpzXpWk6rY6mu+zu4JwOvluDivntdAutBvH0fU7jzLe6IDFnyi56EgkEMPXg1o6Zq58LzC40Wb7aYGDS7JfMU+pAGPoQeetNMTifRadqmHSuP8CeN/8AhLIGE9qbWdVDAc7XHQ4zzxXYL0rQyasSWS/vq6a3GIxXN2R/fV0tt/qxWlMiZJRS4oxWpmyjqgzAfpXkXjAYm/GvXtRH7k/SvJPGY/ffjVIlnPRHFen/AA2b90PrXl0QNem/DQ/u/wAa2RlI9dtT+7FTVBaf6sVPmuV7my2FAopO9OpFCYoooxQI8uFBFJuB6U4dK5jpDtTaWo5JVQ80ASDikJzUazK3QilEik4BoAdikI9KWlxQAzFIRT8UmKAGGjFOxSAUgExTZGVFJJ6e9SYrm/E3ifT9ND2tzcJCXQkMxwAe2aYHjXxP8Sy+INREEcrbFdowOiqgbn+X5/SvOPFcOy/QbizMPu/3RngfljipdU1KY3l2Jdx25RWBzznrkVRt5ZJ7tp3jMj9V44z2qV3NHqrInt9PfyYp7z7kQ+WI9yeQKuX0skMT28nLjDzEkBU/2fdueg+naprAtBdWst0hdICZtrD/AFjdefxArMuYJp3a5lJkllYuM9Bk5/Oi4crRGb2WV1t4SI0UELx9xepJ962F8X3f2q3msVSCKzUR2yMMrGQuPMOernqT6mslLNmiKKDlzmQ96n/siVlARdo4wPahyQKLOkbxjbQafcIlq011csGur6R2aRVxwik5wSAQOuBk4yeKuk/EG7024kv0SKNs/LbwoEBHQcnkgccd+SaraXpUtgkyXEO6K6ieIOy7hGzgDd9QM1Qk8Nz+b5UIMrKcfL2qeeJfJI6pYY9StpL+5aOa7Kie5nmmIitwxOFKoBljjvVy0TR9KibVYFGpCT90zQ3Bi/AofmPsT1rDtdDvtXsRp1uGAD+a0QGA7gYH5DPWpjo+saFB9lh04biS0k1xGrqo7kZHH51PtI3tcv2UrXsXTJdtdQz6W91DBBmTYilkjY+jdQT6fzr3LwP40ttdsobZ3L3kaBZSSM7sZ5HUZHfpwRXgdmNSmXyLtZms7h8NPaxlVz1+ZQMjHvj2q7odhrvhbxBDrNhLDMhXC+S+8eWeMOpO7Psa1jJGEos+oLM/vuK6e2/1Yrz/AMGa1Lq0JFyka3ERAcxk7WyOoB5H0Nd/bf6sV0UznmTUYope1amZS1EfuTXk3jMfvfxr1vUP9Sa8m8ZL+8P1qkSzmE4r0n4Zn5PxrzhBXo3w07j3rVGUj1+0/wBWKsVXtP8AVirFcz3N1sFFAFLipGJS0UUCPCdM11bojDZro4nDoDXmGjRS2dyFJOM16BZ3qCEZYdK5IPudBokVz+t3/wBkBJNaL6rEufmFcb4r1RHRuacmDJ7XxC0rFVPeug024aUAk1574czNN7E16bplsiQqR1qYXYIur0FLjilxSVqMbSYp5WkpANopxFJ0oAyPFPiCHw1otxqEqvIUGEROrseg9vr2r5i8SatqHiPUZ5r64KROTI564HoP5V6x8ctc8kWenJPwAZpIl79huP8AIV4wIprmMLkmSeUMwHXpx/OkyooraXp/2/VBbwwEAHBOcnFeoaR4Bhig/fqS7DjJ+bNa/gHwQllaJJLGBIx3tkdK7SSyhh5b5nIxnpx6VwVsRd2Wx7GGwiUby3PNLzwdwGVMjOMYz+tZZ8ESJIdqllfopGf5V6+lokzj5AFPar0OmxoQVRQw7kVyvGOJ2rARmeT2Pw6YtvVDnpkjGRWzD8PXRQvklgcZ3DrXo6WarjOCPbtWlaxKqjahye+BWMsZNnRDAU0eYwfDSdlKPEvl9RlucVpf8K+htofLjiDOCMP6H1NelLDhckAVC4AIAxWUsRNmkcJTRyXh/wABQ2kqyuAhA56ZOa2tT8H6fqFg0EgwduAwAzWzGDjPrU6YB5FZe1k3ds09jFKyR4Tr3w2v9GknGnXE9sr8ysjEiRO556GuA8QxavYrGtzPDdRWw2xyRAiT15HXPvX1ncWkN3GUdck+vT6V4/8AEb4cW9sTq9nBLkfM6xdgPavTwuMbfLM8jG4FcvPA5X4W+MotP1izluryaKWQ+VcJK33gfusQemDj86+pbGRZYEdGDKwBBByCK+Ir3w1cWd+L21kWeGbbJtVvmUMSAOeeCP5V9SfBfWV1Hwu1oyKk1jMYXVRtGMAg47da9ui+h89WT3PQs04GmZpwNdBzFXUBmE15T4yX95+NesX/APqTXlfjMfN+NNCZyyLxXonw0HJ+teeIOMV6D8Nmw5HvW3QyZ7BaD92KscVBaH92PpU9cr3N0FLSZozUjFpKKKYj5h1e8jspi6kVR/4S3yoyA/61zmualJIpUkmsKFZJPvE15vM0bNnYP4rnlYkNxVa4vZdTcLk471gBHQ4BrX0rMRBapU76MSZ1nh+0+y7cmu6sb+KOIDcK85Ori3i+U5aoovEsvckAVupJFXserjUIyQAwqwjiQZFea6Rrc13cKASRXoGnktGCfSrjK407lzFNPFPxSVQxpOaQ9KcRVbVLgWem3U5z+7iZ+M9h7UAfNvxR1gap4svnV5HSOTykBPACjH881d8AaGt3qaST/MsePlA4H1PrXLQW0mp6rvKsdzlj375616t4asV0yKNsAE8qo7D/AD3rCtO0XY7MNTvJXO6ZUs4MRqFHQVnSzb5C5PAqxLc+bAG6nFUXVmB6+oryW7H0K1LVnMWlAwPat21XI96560TY2cEkHnFdBYSbuormmtTqg9C1PE20BSRV7T4iEBPPuaqSS5HAPQVp2KMY8Ljn1qUinKw+aN9hI79OKjgsHm5AJ9TirsnYZ+9xVu2KwAcnH1rRU03qZOq4rQpDTpEXJGAKgaNk6j/61bfm7hkMMH1qGSFZlY459uaJ0V9kzhiJfaMpOev5VW1azS+sZIXHUcHGcH1q5LF5edpHWq8xIjIOTWCbTN5Wkj518a6FJZ3EkkccyLEZCdnT3I7+hrqf2fvEcbeJbm3luCsl7bqChyRJInVs9iRnitrxnoi3IJC5XB37c9xww9xXm/gCSTRPiDpjyERItyFbnGQ2R2+tfR4StzWufLY2hy3sfWdOFNHIpwFeoeOVr4/uTXl3jEfMfrXqN8P3JrzDxkPmP1poTOUTrXf/AA15mb61wKjFd98NP9e31rXoZs9jtP8AVip6htP9WKnrmZuthtFLiikAlLRS0AfF19bq5yaqtCiJkUS3hlPHSq1xc7RtryJTNmW4dr9O1OnuhAnBxWdFc7BgGobqZnOKhJsk3tHc3shLnI7Vsy6YrRnatc1o1wbUg9q6WLWY5AqZHvXTDRagbHhTSnjkBYZ5r0q0jCQqMYriNB1CJSoBFdna3ayqMGt4FItEU3FP6immrGJWJ42m+z+FNUcBi3kMoC9eRitysDx4P+KUv8Ak+X260ho8J8LaN59xG75IPJHb/PFd9AvmY285II9q5vwzD5MKyuVDMowG+tdnpNhIXMzsCn8I9q4K8j18NDQsJlItrE5AqzAV8sAgAnrUUyiM7eMVLbQyMxYZxXFNXPUgyzAmGwBx61twRjygw79hWWIikZJHOPzq7pF2GVgf+WR5z2rFxOiL1Lxj3IoIAwfWtix+SEA9cVXtrZLhWbcoCjd+HerECu1nJOADGE3cdhSSZcrNEYuQW65xn+dOWSSbjP6VFpto0hZyeCwrXt7eOLO7nHt1p8rZEpqJBCkm0AnjpVlAwGCSeelS9Tgd6YyMDmq5bHM58xSvkOcrwKqSRBkwa0bjlACBxVVVBPqDXPNe8dNOXunPXNitxFIkvvxgZI4/+tXjGt6edO8VW1wgK7ZlbcVwTh8np+ea911WyMS+bGm4Hgc9K818cac0kyTbWCLcL904OCMZr0sHO0keXjoXiz3SFxJEjg5DAEH1qSq2nsGsbcjODGp5+lWBX0R8sQXg/dGvMfGQ64r0+7/1R+leZeMhwxpoTORXmu8+GpxOw964NK7z4bf8fDfWtHsZs9ltP9WPpU5qC0/1YqeuZm62CiiikMKKKKBHw/ZAMmai1NAI9w6iq2lXDfd7VoTRmbg9K8uMUlqXcyEDsARTwrPIoPrV9rTbgDFWrawXIJHNEGkwZJbWp2DinLYyvOAoNXQFiUDpV60mjBBGMitpWYkjS0SxlTbkmu306URqFJril1+C0UZIBq9YeI47uVQpqo6FnoMU24Cpc1nabIZYwa0RWqKCue+IO3/hEdQ3d0AH4muixWB4yks7jR7nTpLmFLiVcpG7YLEHIFDZUU29Dy3Tw4KwBVK7lUEDnGBmvQDGtrCiDgKMfpXBx3Kw2FxrKpEiacS91bBj5g29VHGM1Qi+Kt54m1VbLRdDeRnyR504UKB1LEDgfjXDUoylqerRrwho3qeiOUdSzkdePeo38T2VmFgJUueDz0rjNUPieSERXF1p9uW4CWcbyMPqzMB+lY6+EtRuZAgvbkt3O1QKy9lHeTOj6xJaRiemt410eOIl5VH19qk0fxPo08U3lXcQaXkjNeYX3wuv5QHbVDtXk+c6qP6VhJolxp90iRapGXjPyrnAP0IzmhUqUlZSD6xWjK8on0Nca3HY6ZcTCUcRbV56k8D+ddBo14ZdNe2XkyQ7Rj1xXzZeeJ7+3hWLUw4tYmBMkfzgntnHI/EV3vg74teHbWNft+rxQFeNrxuTj8BWEsPOOqVzthjKc1yyaXqenWuqLBpm55AMDBHuKgb4g6Hp/wA15eLFxk5715h4v+Iuk3WpiDwxcXWqXF4fmt4IiELf3stjHHX6Vxer2V9qRZ9Rvba1jB+ZIsuf++iQPyop0mtZ6E1sQpX9nqfQsPxQ8NXJxHdg55BHf9Kvp4ts3uY0Qs8UgBBxx+dfMulaTo5nUSaqyoOMSTeX+mBXpeiaN4dMKwzTXkkY5Vo9Qd1H/fLYFbyhTXU44yqvoetvcxXOfKYHHvVZZChKHrnFcr/whumCISWV5qce4Ah4b1xj+dZPiPw54i0jSri+8PeL9Se4gjMhtb4pIHAGSAxAOfTNcc6MXLSR2wrSjHWJ6FdfvbWRB/dJ69xXnniJFl0m5DoWIUyDv0H/ANauM8DfF7xPquqRWWoy20lmc+dP9nwyDHqMV08muPKjW9usLtdyNDEzkkSHBOM9F49fpXXTwdSnu0cVXF06q0Tseu6C4k0SwdejQIf/AB0VoCsjw7NappttZwyb/JjEe4DCsQMHB71sAYr3YTjJe67nzlSnOD99WK93/qjXmvjIcNXpd0P3RrzbxmMK1aIyZxi13Xw2/wCPph71wsfJruvhqP8ASn+taPYg9ms/9WKs1Xsx+7H0qxXKzdBSUpoAoATrRinYoxQB8F2OIetakM/Umsy0QSgNVtj5a15TkloUyaaXHzZq3Y6hHwpwTXP3dw3TdxVSDUjBOO9VCK3BHczDzlBQ81LBbSRR5HJPWsvTtSWRQSa6rStk6jeAa1skC1OS1mOThuRV/wAJPtnUMec966HVNFjuVyo/Csm00uS0uAwBAzRd3HY9a0WRWgXB5xWrnFc34clPlKDXRjkVuixwNebaow8ST3dvcIqzQFgCv8aj1r0huEYjsCa8z0QzRatqV3IoGAyj0ySMV5+Pb923me7ksE1Nvy/Uw9L8MMl0tjdF/sd1uM6bj+/OCDu9RjFVvDvg+00LxfrVtbKyWzWsM0AzkqC5BGfTIrrjvXXdOEk0ZbbJlEb244qC8j+zeKbK4bhLiCa0z6sMSJ/6C9ZwqycbN9CqlGKm2lszOuLuO1uTvZWjTqc5NczeXXiLXbhlsMWdqWwJOjMPb0rtbrSxfzYkYhCeQOrewrSsfB7yAeVLtQdFBHH1J/pWXtFHVm6oueiPLbzwVdzzKyO0zeYrnz2aQ44yCCK3NQ8I28XhsSWLKLyN3N0juBGQTlQqHlcdOK9ETw7dWob/AElwAOyjiuL17TZmuZ8vI+eCz+gqoV5T0HLCQh71tTz25Ro7OcXAbb5TqyMcnoa7P4bfDDRNd0q3vtSilkEyDocH61yviTTGH2e2gY+dcSCAL/e3feP4KD+de3+DY0tNPt7e3ACxgKB6DFXXqNQXK9zPCUFKq+dbHBSeELDwN8R7S2RD9mu7KZA/Y8jDex25Bx6Z70ni/wAKLbzn7OdiEljufJGT0H+Neg/FnQTf+HYNSgiL3Glv9oIUZLQkbZV/75JP4VbsvDdhqOh2IaX7UFgUJOw5kXHB49eK5nVfuyb8mdUaKvKCWm6/r5Hilx4FTVHQWqLF8ignazHcOpzz1rol+FGoWljJPaXYS6Zg5kQFeMdNvQ13ieDoLSUtDPNExPVX4/I1p2cDxIymV5CeO4NOWLnayEsBC97annXhq/8AFMSNpDvLKc4WWMdPx7V1kfhC9eHzL+8bzBljgE5GO5NdPoGlQwrLAYgHB3Z7tn3qHxhcNpfhnUrgZ8xbdlix/E7Dag+pYisnUk5WirXL9mor3nexyHwv8DaS3hDTr+5tfNlu0Mzq/Tljjj6YrpfDXhixW5u1MES21q/lxxKMDJ5zj1xWroNiNK0Sx04Af6JBHBx/sqAf1FT6DLa2uo3Syyxh5Zi6xuPvYVacqrk5Nvcj2XJGKS2JdTMtiLY2arFHvVXBGTj2roVPA+lYfiPLwBouC0qYHtmtuMkxqT1xXo5W7TlHyPNzpXoU59bv9CK7/wBUa828aHMbV6Tc/wCrNeceM1+Rq9xHzbOKjruvhqcXjj3rhkGK6/wDP5N8wz1NaPYjqe42ZBjH0qwTWbYT5jHParTTiua2pvfQm3Uu6qbXQHemi6GetPlYuYv5o3iqYuaQ3HvS5R8x8NWhNumGGDRd3ilD2IrX1mwFupYDpXLXStMcLXjyhrqaDGdp3wDT4bPL5PNPtLQp97vVpcR1UXYLGnpluNorpbK9NqgJBGK57QpPOl2AV3MOh+fb/c7V0R1RNmPstWiuXCZ610VppMdwAcZri7bSJrS/BAOM16boMf7hdw7VcUUvMfYWAt8ADFai8ACjAHSlWtEULiuA1WyOmS6iN2V8xHC5xxg16BXKeL7QPP1VftMWwFum4Hgfka5cXBOKl2PUyqq41HDuvyOP0ZZLnXUvyoEa5jz6kj/61dBr1gbnyTE6rNFIJ4i3QOpyM+x5B9ia5/TbG70i6it7t4wXkEihTk9Mfh1rrL0jYh554NcT0s0elJc0mmRg2s1xIbSVZQGKkchkP90jr+PfrW9pUrKm3b+dclJbQT5aaNHx09R9D1pbbRr+d0WxvL+1BPUXkhA/Ak1lUUGrnRQU07bndXGAnzYLY6Vw3jCW2tSJbm4jhXZlmkbAqxc+EtYffJc+K9TEYUkhZSP1GK871jTLFLxVi868nDYEtw5kbPtknFFKMb3ubV5TUdh2i2jazq76wQy28IMNmjjBOfvSEds9B7V654S0+REUOvbNcN4d0t4zgniPBOe5r1HTVEUCMmcjjNVWlcyw0OW/c2WjV0KSRgqwKsD0IPauIsJrXwNcy6JqlxImmA+bp9yULLFGTzE+Om09D0wfau8EBSBZGB+cVznirTFv9OeRgRLECyMvUe1YtW3Lj7z0Y+1vNN1BQ9nqFpcox4Mcqt/I1pQW8SsDlAF9SMV5fpWleG9WYJe2K+fnk5AOa7DTvhh4UlI22e7PPzNkfkaIxg2a1eeKu2aV7r2j6VqO641SyiBjI2LKGYnP90ZJ/KqFwJ/GF7ZkWdxbaNaSi6L3KGN7uVfuAIeRGp+YlsZIUAYya6C08O6XoLH7BaQwEgAsiAHH1Aq1J09cinUtHbc5VeVrvQoBcH9KqR6WryPqcCEyRysj8dsDBq6wxJzwOtV9GmluLS+tIQcySk7zyFGB/hWMUmnc2c3GSaNO3jF5BE8gBxICPyrSHTHaqdlCsCpEHLbBknGOauCvdyuFoOR85nNS9RQWy/UjuP8AVmvOvGS/Ixr0S5/1Zrzzxj/q2r1EeKzhwa6LwexF+MVzi9a6bwQgfUee1aXsiLXZ7LprN5C8dqmmMmOKNMUeUv0qxMnFc/Pqb8mhnl2zzQhYnipzASMgU6CIhuRWrqKxmqbuPiiZhUhtmq1CgAqbYK53U1NlA+M9akEkDZ5zXP2en+YC2KtG7a4XDmrmnhSm1a8qcr7FlGaxEUecVQktH6iumubYug4qnLbADFEY33IbK+hk21yhx35r2DRbq3ktV3YzivHI3aOcbRnB6V1FhqtzHEMAjFdFLsUmegSQWxl38Vs2EsMcYwRXktz4ve2OHYjFEfxFjQY82t0mM9l+1R/3hThdR/3q8cHxJj/56/rT1+JMRIHnc/WqsM9kSZHPBrP8SabHqOnFH4CHdWF4Y1s6iqsGzmuulhFxbmNuhFRWi3BpG2GqclWMn3OE1zyjJDOxUMjgAkZJGP8A61Xbn5rdC2evpR4giCKYxDIse472CdBj17D3qo16stnGY2LRMBhv89q8hJ8mp9BKS9poI5Cxd/rW1oUw2hjk57jiudMn8J6dRWlZXIt7cueCOgrCpsdtCSuHjfXha232aI5duCPevNUY2s63D/MVbeT71e8Ua9bQzySyuGYZxnt6muMm8UCeJ1GSTjAHTmumjSfKc2Jxcea1zux4zsoplRjJCGP3mA2/jivRNH8QRNbRMZl5AOQeDmvlzUBeXEsjKGCoN+GPGP64rovCtx4hsNOuZFuLh7YKTHkZjRvbj9OlXUw65b3Oeljnz2tofTep+K49OtkLiSYn7qRjLN/n3qxYX8mo26vPb+QjDiJ3DP8Ajjivnnw74h1TUop49QmuHuI3VhlTjvx6dOMd69FstW1Wwn8uKLNsAELDsc9f1Fc06TW7OuniFLVIr+NtNk8PawmoWilbeQ7mA6A9667wj4jF9CrZww4IrkfEXjeP7P8AYdUtiCxIYLyAOzKaq+FJW03U4VhkMtpdJ5kLfllT7jI/OplBqPMbQxEZS5D2bzjJ83PrSls47YqlavujU9iKnVyeprnlO43FLYjmIWUgdhmpPDA2x3T5+RpuD64A4qnfTpArFnwD/Gas+H7iY2ezyD5RckOAME/0rejTlL4UctecV8TsbCR+WWPXcc59akFMB4pwr6PDU+Smos+WxlVVKrknoR3P+rNee+L/APVPXoVwf3Zrz/xdxG1dKOQ4QDFdB4Pm8rUPrWAvWtbw6cXy4rR7ELc9w0q5HlKc9q0o5BK2K5vSHbyVz6VtWkmH5rikjrizTEYx0qOVAnNTJICKp6hMVTis4ttltJEi3AXvQb0A9axDLK5GM4pHaUHvWvIZ858eRIx4FaWmhomORVqw09cZIySKfcw+QwI4rzopdRnQadp63MG5hVHVNJEYLKOlWNE1ZY4yjHirdzeRTgoMEmtnaw7HN2+m/PvZa34LeL7P2FOFjIYiVXOaozRXMKHIIFFPQT0Ob8WxJHGxGM1x2a6TxNK5Xa2a5quoEOoT76/Wmg4p6cuv1oKPcfh1zbxZ9BXpyY2ivMvh3/x7xfQV6Yv3RQySnr0ButHu4QM7ozxnr7V5lp97s05EDDCZBBHbPSvWWG5CPUYryi/g+xald2UoK3Ks7IQMKVxwf1rlxUbxud2BnaXKKuoxtdIhwrN/DV9rrbazOozsQn9K4bUFmivN5LKR8+fp2/Wus8OOuqw+Q7IiygqQeOMV5lSCSue1RqPm5TxTVprzV7xy2dpPPsK6LRLLSY7RI57iIyMdxAYZ47V12r+BljupLSzjDxx9XxwSeTXI3HgaGG8F1DL5Dqf4VzzXUq0ZqydjjWHlF8zV2dPFYWU6HOnFkUAsdpOB2zXXaVrc0Kx2N3pu21HCfuSoHp7VV8O316lpJGYrS8aWFYyhyjcAgknBFenR+ItKitY7f+z5jkoeEXggj1Paueor7npUvaR1jE5ePzbueI/2M4wcxBbb/WY/DmnXGvvADNc6PIIYiVwbfYMjk9OO1dxc+MUdIE0+xaaRWywf5cLjqMZ56fhWBrEup61C9tJsRXdjhB1U5G0n2z1rGSSNo+1lvG3qeEePvF/h/XLtU0l5ftC5LkIQFHpV/wCH93e6hqFrBLIu2KfcF44BXHHrn09q9P1D4faTZ6BLaw2sUbMMs4QZ3Y/SuF8BaXDZeJJopGzJCdoVx09c1ftYum4xOV0ZKspv8D2aMmEMeFVRzzimtqMcayr1KdvrXO6hqzlfKU7dzbFIPGT/APWqSzDyXUkzcxgA5DcGuFR6nY5Xdh+rztLGCfmBYEZ9B3rrtDRo9OhDnLEZJxjrXB39wLi+srWAH5yNwByQc4/+vXoNocRADoBivfyynZOTPnc3qXkoIsk05TUeacOK9U8QS4/1Zrz/AMWjMbV305/dmuD8XH901NCODUc4rV8PZF+uOeayV610Xgy3FxqgB7VbdkSldnrOjQsbdTjtWikTo2cVLpUAWJRjtWh5K+lcbkdSiRQglabcW/mirSIBTyBis76l20M2Kyx2qX7EPSri7QacWX2rTmIsfIEGI157VT1CUzEgDpVvzYyeoqvO8ZfAxXiTc1ojTQzYXnEoRM5NdDptnM8ibwaZpOnpNcqQM16Bp+ioqK+3tXXh4uUdSRukaaHjAcUusaNGkBOB0rcs4BF7VR8RSbbdvpXdFCZ4X41VY59g9a5XFdH40l3XvXvXODmqYkIetOjP7xfrSGkjP7xfrQUe7fDxgLaL6V6OrjA57V5V4BnKwR/SvRVuflFMg0w4rhviHpapLba2hK+UfKmI/uN3/A811H2rHeq+oLBqFpJa3Kh4pBhlPelKPMrMqE3FqSPH9YnVpAqgmNxlWVcFj603Sr8WTL5LlXPKrnqc9Ks67Y/2PM+nOpALf6M3UeX1x65FYEc4gvFlUEuMKdy7QOp/SvMnTteJ7MKt7SPUL2VrC1iZ33PIdxYY5z7dv/rVzssYeViQCCeQaw4fES3sge8uWCxtsVQM8dsfyrq9PsW1SJnhJwvY9a5HTdPVnfCqquiKthIlnMCrMp7jPauhg8S2hk+yySjzFG4jHQDmsa/0ZlibKkn1FcdPpt1DdIkKzSvI20qobJHp7017/U6FVqUlZI9r0TXrNxmOdCrYXriumt5YZow0QDLnggcVwvg3wqLCCOSdWZnAKhv4R1/Ou4VPs6gYwOmMVyzbv5G93JXluPuthjbOOleWtam08TT30aqdwI2k8kepH4V6TrFwlraZZXZmHReT9RXmv9pWU2q7mVY43YgsXJ3nkfn04PPFOEW7tHPUmlZM1RcwXLGS4OG3bQpH8eeD9fT0q1BqBhxl1W3XKIc45Hbn8fyrnrWRPt7NkyRK/B/vMF5NF/eXGtXaaTADvlJJdekMeBz9SeK1p0uZ+RlOtyxv1N7wlCb3UJdWdCqsSkYPTHtXolrzGKw7LRv7K0yzghUtDAoRm6nPqfr61t2f+rr38JZ000fM41NVWmWKetMp4rrOMbOP3ZrgfFgzGwrv5v8AVmuD8WL+7Y00I4HHNdH4KmEOp5PfFc53NaugOY79SDiqkrxsSnZ3Pe9KuVMS/SrxuR61ymj3bGFee1XjdNu61w8up18xu+eKPP461jpdnuaV78L3oUB85oyXWzvUf27NY09/u6Go0vBjrWypmTmfIA1S4HSlW/mZsk1jNqcY71GdVA6ZrLkj2L1PUPDGqRIqtIw3V3lv4mto4QN6186pr00X+rLCnt4p1AjHmN+dJQtsO59DN4vtl/5aL+dYmveLIJYmAkBP1rw8+IL5+sjfnTG1a7f70hP41aQmdJrEsV7clzg1QaCIDgCsc38/96nRX07OAWyKrQRauIQvIqsn+tX61bYs6ZIqsinzV471BZ694GOIE+ld8JPlArgvBCEQpn0ruRkAUXFYc0hFRPOcU5hxUmn2f2q7jQjKg7m+g5oWrsI5rxpoaanaKpOLuMB0kUcxk8ivMtVieC3QyQtHIuQcgn5uc816NPrHm+MtV098/PCsqg/7JwcfnWZrWm/blyAAUB/H8q4KsuSq4vY9alT5qSktzyaG9VLtWllTar7Tnt7gda9N8DeLoreUBpAwIxjoMDua8y13R/s7FkVlbcTgg9PrUdlqhhjjWNdhYnJGc5HYHv8A/XrWpSVSJhRrSpTue9HXI5pSYx8rH5Se/vWhZ2ah/tUjKGYA5xwK8o8P66YTmaXBJbLHn6/rXTal4imu9MeUYiEarjB9+35V58qPK7I9qni1KN2em6Vq8ES+WsinB+7n7uenStE6wjSxRykbiQACMZP/AOqvKdH8QW+nRJLvDTyAnbtwQR3qG78Y/wBouJJJRFDHJucM33sdFU/U/rUqjfQqeKSV0zq/GPicm9PlkC3QfLIrfMjduPQ/0rzV9dXUr8xxS5IuA+5VBxjnJx15qtrPii5eS8tLb55p1jOw/eBBwNuPY/r7Vc8IaQLWFnu1UTTDC565HUex/wAK6VSVOF2ebKs6tSy2Okhunjt82iIAo8tVLdT0/wD113/g7wwujQNNKS1zckPKSentVHwn4f8ANjguZoUSKM7o02nP1Nd1FGo+o4rhq1bLkid9Kld88jNm19NL8R2Nm5BjvImWSM913AZroXtTZTtCTkDlT6jtXkHxM1Y6b448MyDpIssR/Flr254DdaVbXPWQRjPuK9rLnekkeLmsV7S5QzT1qIuF60C5Qd69A8oll+4a4XxWP3b12Ut3GEPNcT4mnSVWAIoQjhP4j9a0tBjaS/VRVVLN3YkV0HhOwKamC3pVydo3JSvKx6Xomnt5K5PatNtNOc5NS6UgVFHtV98CvOdR3O7kVjIeyZAcE1nToyHmugmway7yMHpW1KTe5lUikjJdiMimrk1d+zbjzTxaDHSuq6Oex8KBacEoUU+uQ6huykKCnClIpgMVKkC0CnEgUARScCrWjWxvbtYxVOVs103w+sDd6lnHANKUrK4Rjd2Ow0vwcs8AJTP4VYbwMiOGEY49q9S0LR4harlB0rWTRrZiCUFefLFHfHDHBeH9Ha1AUKePaum+zSY+4a6q00uBQNqL+VLeR2sSld6bgOQO31qqVeVR8sVcipQjBXbOOaMg4Irc0W0EVs85+9ICB9Ky3nF7qC2loihmPLnnA7mumVQibFHyqMCvXpUHFqUjzp1E9EfPvxEu28NfETT7458ucPE57YOP/rV0CXX2hAyfdZc5qP47aC99pRvokBls2Ew2jkgfe/Tn8K5Twjrn2m0RJGycAV5WY0rT5j2Mvq3jys2NU0xLtcEKMDg1wmreFpLWVpoidhGQVGdp9DXp2A6cd6gmswQSFBH8q5aVdxOith1M8ltppoGUFASM7mDYwPX/AD7VavNduLxljRZdjYY8dR/SvQ5dB0y5QbrWNWb+6MZ9zVdvCsMasVYFic528/Sul14PVo5lhprRM4RL+Yx26KkhdSTgZ+Ye9P8AO1C4iaEL8jyh5Nw4RQemPU8V3cfhiWYE26ZJ+U/L0FbugfCyJY83rljnOAcZHoaiWJhEtYSpI4Twv4dn1C5a4SJp3kx87cDPqK9a8JeB1tSbm8/0iUMWAflVJPauh0fw7aabAkUMSqidAB92ugt4kT7q4OOB1rz62KlPY76OFjBai2sGxAmABwAB3qeTK5HHA5x0p6qFyRjPTI9KhuZVggeVyAqgkn2ribO2J4d8VZX1L4k+HLCLJaGaMHB7s4J/QV9NaN82k2+f7tfL2hJJ4r+L1td8lLd3uGPoAMD9SK+pNGULpsKjsMV9Nl8eWkkfN5pK8zK1LR8ufKlKbuRkZFc9faVrdsS0cAuI+oMTZP5Hmu+liWVCp/OqQDRyCI/McV6aSaPJPK7/AFq5tMpPFLE3o6kfzrktR10zSkE8E19DPp0FwjR3MMcqn+GQBh+tchrfwn8O6wWZLeSxk7PbPgf98nIrPlfRlJrqeaaVLHLjkV0WnMtvcK4Ip0vwp1XSnJsLuG9j/ut+7f8AwNZV+t9ozAXttNbsP764B+h6VTbtqTbXQ9S0zVV8sc9qsXGqgHhq8wsfFSxqMv8ArUsvjCN24kH51h7NNmnOz0ePUPNIXdVxLIzjJavMrDxhDHOpkkAH1rvdH8S2c8Qbzkxj1ptcuwJ825qDTQvU077IgqCbxBZKP9en51UbxHaZ4lX86E2wsj4NVqdmog1PDVmajsmjJpAaXNMQZxQTkUhNBzimBE55rtPh9fJZT5bGSa4l8lsV6D4A8A634j2TWtu0Nqet1LlU/D+8fpUzi5LlRVOSi7s9isPGFtDbKGYZ+tbWn6rdXyiWOFkg/wCejjAP09az9B8Aado217gG/uFH+tmHyqf9len55ro3XzkIHReg9BWdHK7u9Rm1THvaAz7VcXDCON2CnrjjNQamVijEKkqP4iO5qa1YQAD/AJak4we1Z2uo3lsSSTnJNetTpRh7sVZHnznKTvJkvhy32faLllGSxjRh3A/+vW6oJUg96oaVD5FlBGF2gICQPU81pIvH1q5EI57xPp0d7asroHUqVZfUdxXzvFpNx4X1y40yUECNsxH+8h5U/lX1db2UE8gWZdyntXCfFn4aCWxGu6cC81l/rI8fMYT1+uOv0zXDjaXPC63R24KryzszhNNkaaMc9qviM8CqejQnaoPHGa6OHTzKvyj8q+blofSxVzKNvnBIA9CBUTQsAGByB1z3rbbTJouQoZe5U5qI2Eb8lSPXHFTzor2ZoeHjFIingeo7V0yr5hAThRzmuV06zijlz+9GO4IrqrUoyjGT/vc1zzepvGLsW4lzgDIHqen5VeRPlwMjPOT1NQxgEBu/vVuIFuc5PrWLZVrCqABzniuP+Jmt/wBmaNJCjBZZhtGOw7111zOkEZYkcAlmJ6CvC/iDrcutakyx5ODsjQfoK0o0+aSInPljc3fgbohkk1DXZFyZZFto/opyx/MgfhX0Hpg22Uf0BrhPAugLoOh2diFAaGMeZ/tSHlj+ZNd9ZLi2j/3RX1tGHJTR8ni6nNUJD1zUMsQaRZOQV6+4qcimng1qmcgyJy3uvvQqjcx3AD0pIkMbMOx6Ur/Lk4z7GmMhVS7PxgDuaheOK8RopYkmjPBVlBB/A1KivIWyQPQCnIvlsME+9XcVjjta+F2gakWMMUmnyn+KA/L/AN8nj8sVxWp/CHV7Ms1lNFex/wCydj/kf8a9jYZlICknH3jSsScZXaPapcUxps+atS0S/wBOuBDc288D5xh1IzWhp2k3ciD9/InoAxr6DntobhPKmhWVT1WRQRWLdeCtLlYtbxm2kP8Azy+7+VKMEmDbZ5Qmh3a9bqU/VjVyPTblFx9of866vVPC+qWO54YRdxjvF94f8BrmZdWjgkMcgaN16qwwR+Fae6Z6nyspqQYqNAKkAriOwXIozSYrU8P+GtW8T362OkWM15OeojHCD1Y9FH1piM0Vs+HfB+ueLLjyNH06a5wcNIBiNP8AeY8CvbfBP7ONlamO68UXIvZR832O3JWJfZn6t9BgV7HaabY6ZZR29lbx29tEMLFCoVR7ACtY0m9yHPseP+Af2c7HT3TUPE8yX8y8raRg+Sp/2j1b6cD6162dMW2iRIEVIVG1VAACj2FaEcjBQduM9hQ27YcDr3PJreKUdjJts5+clAwC7qzbnzFwyt16gcV1sdmr5LLnNZmp6WkR3KSB6YrVT6E2MiJQzK2MYqG7xJJ5R5LEAfjVuKLaxFVJEL6taovd8n8BmqW4PY1kjA4H0qcDFMRMdalHOABk0mJE1pxJmtxQksQDpvRwUYEcEehrybxb8ULXQJXsNLVLy/HyvIeYoT6f7Te3Qd/Sue0Dx7rw1KOe71KeUltylm+Q/wCyVHAo9m5BzW1N3xD4TXQNUkt4Qfsz5eE/7J7fh0qnazNbybTx65r0K61Gw8WaVGJAsF6vzJuOAT3GfeuN1jQ7mzOXidW689x7etfL43DSpVHpoz6jA4pVaa11RehWK4XkDJ71FNpnJ2gfjVXRbrdhSSMcV062wmjBAOfpmvKm2merG1jCitQGH7oE9+RWnbRuAMqq/jmlazdSeM9ulOAdBkjp7VL1KLYKqMsSTVuOVsdgMVlxyFm7Zp+oagmnWLzueQMKPU0rO4mc74+8Si0tjZQt87j5iOw9K4XwLpJ13xbDLKMwWf8ApMmehI+6Pzx+VQ65cSX1zLNIxJYnr2r0P4a6A2kaObidNk963mYI52jhR/M/jXsYDD3kkeVjq/LFnoOmovkPKzbcAnJPA4rZ0zULK8hUWt5bXBA58qVX/ka4vxnqg0XwvKgI8+9QwRoP4V/ib8uM+prwwSXFrN51vJJBIpyrRsVI/EV9PChzx3PmKlT3j6zNJ1rwvwn8YtZ01kttYjOpWw483O2ZR9ejfj+dew6H4l0vxDbibT7lZOMtGeHT6isqmHnDVrQUailoaRFDAHjFLQelYmhGAq1HIAGyKlIwM1BI2KpAAYZ96Y5LEDtTVyeT3qUIMgntVASfdGc81EWyCR17GlZgzHFKqdzUjsJn5NxznvVe60zT79le6s7edgMBpYwx/OrWeCABihV3r9KYrHxgfhZOBwzUz/hV96zBUZiTwBjk17tb2n2mZYlRQT3PQD1rrNM8P2doqzKA8n97HJ+npXlYb21Z3Wx6FdUqa8zxzwR+zsssi33iaWTyMgpZxHDN7u3Yew5+le2aLomm+HrL7Lpdhb2sIGBHCgUfUnqT7mrxBICH5R6DpU6ooxivWjBRR57k2NVf3WCOvWmvHuAUAYHpUxXPehBhqq4iVYwIwOlMZMDrUmcjrxQQCKkCNOD6ioLqETLg/lU7AjpTcb/rVIRgXlsluy7TyTVOGHdqSOB9xGOf0rV1qAoqyAEjOKq6XE8jzOI8jG0Ej861W1yWPYqikkhQBkknAA9zXEeJ/GL3SyWOjyMsbfLJcrwX9QvoPeur17QbnVoRAshSLqY84DfWsBfBktqcmItjuK0jbqQ7nmF34ekLb0Q5qbTbdoX8uZPlPGDXok2hn+JCPYiqcvh7d1T8RWmgtSbQtXGnWq2WoxG5sc5jmX78Of6fy966jS9XhuYBEXjvLVjhkcYz7j+6a5q105okMbglT60xbW40aYz265RvvIehFYulFt+ZpGbVvI3NV8Nx2M6XunuXtpDx6ofRv8a09OyYwOQw9O1QaT4kWyRpjCJo5AA6ZwRWpaXGnamSbP8A0eY/8sXOA3+6f6V87jsomr1KSuux9Dgs1jZU62/cf5aSLyOfWqN4qxIflx9RVuVjESGBUjqDwRWddyggs3SvEtbQ9qKvqZwkVZCzc4rC8Q34uRsX7ijAx3NGs6usTGGFvritjw34YZY01HUoyX+9FCw+7/tH39u1deFwsqs7I58ViYUYXZk+HvBq70vb+MGQndHE3O0ep9/5V6PY6Y8iK7DhRkKOPwzVfQoI7u/kaZSVRcqPfIrpMgZ2jCjgAV9PToxpLlifK168qruzzrxZoWo6nctLNC5H3UVRkKB0A9q5J/AOpXUhCWkmPUjFe2vFvOSKVLdR2rsjiOVWscbp3PGY/htqSY/0Z/finjwzq2kSLcQR3ETp0dAQR+Nez7QvQUbQe1P63LsL2KOF8M+P70SLaaxEX52iYDa349jXoKSBkBGSD61V+x2zHLQRH6qKmJwAB07Cuaq4yd4qxrBNbsV2qA8ninMSaUIMc1OxQgGRSnO2nBcUDkGkMai05sjGKcowM02TA5pDGMeg7mp0Tav1qCAGWTmre3PHpSbA89022WGMuFw54J/pW5p6eS21sZ6gAc/Sq9mkauCR8qcAe9XERlmdicZOQf51pTpxhHkjsKpNyfMyWZTv+gqWEhqe8W6NSFxjjnqagZvIk9qolFkxnORTdnPNSxMrjIp7RgnPFQMiGMZpAQaeV54pm3nrQAYz0puz5qCCDRk4xyaYhksKSpskUEehFOiijiTZGgVfanZ70AjHNMCNo8nNRGLsRVnINLhTTuIpm1TPKg/UU77LBjmJD/wEVaEYNL5YouBmS6XZyE5hUfTioG0W1DYdC8fuelbTRA9qjkti601ILHL3vhEwE3Fg5dT96Juv4Vmtpky/NEjqy9VIruIw8RxU22O5GSNr+voa1jXa3IcOxx9rqrSkWeobg44WQj5h7H1FYHi/UvsMptEIWTGSe2D6fhXfazZWV5asLsCK4Rcxyr1OO3vWBpnhNvEEttd6ggMFuT5QI5k9j/sg815+Ny+nXXtYaS6+Z6eBzKdD93PWP5GR4K8JPIU1TUULE/NBERn/AIER/KvQ7e2cyEvhRjGPSr0NnHbqFUc9z60pADHiqo040o8sTnr4iVafNIhgtYoAREgXd1OOTU4AApu7rShsDJrRmA7AxTSAKMk0hpDDNA6UtAFMBCaTnNO204AUXAaE9cU8j2pcYFJ1qbgMY0IOelOK5oX19KYxc9qgnYYqckGq0vJx6UICa0XC5qdmwAeRmmQ/LGKJGXdgk1O7A5AnYUXp3rbj+aBJCMkDAFYr4Z/ety0A8kDtit2SSwj+EjJPGahvIN6FgORUyLs4PT+dSSrld46HtU31EjMsLrJ2E9K1lIIrnHJt7zI45retn3oD1pzXUaJCoPSoyozUpqNutSMjYYPFMOalIzTSMUxEZGaACDT8YHakz78UwGkc8UAHv2p+fakJ/KgQnNOFNBFKpzwBQA8E9zTw4BFMVfWn7AO1SMCVJzTCqqCRn1p+0daRyApJHAHNAHKy3dxr+sw2QTECvlz6KOp/z613ltFGIlCgL/DgdscYrjPBSrcalqd0o+QEIv4kk/yFde37vJXgnrjvRirtqC0sFJpasa2c9agYktUpOeRUZ+8alAJ05pQM0dOtOzxTGNxzRj3petApABpRxSdaM0AOoz0pM4ooAM/hS54xmk5o5NAAATTsUlOB45pDGsMe9Quvz1YPNRuPmHtTQE6D5QKa2dx+XNOUcDigc8g5FSDOSu4WQCRRxWlpVwJocfxDrQYxJEVI6is+1kNjdbDxk1vuiTeI7kZxyB61Kykoc/lTFIZQRzmpE6c49PrWbA5fU28u5yelbOluWhHfisXxAMTjAxxn9a1NDfdADW0l7txLc1OPSo25qYgEVGwrFMojx60hAAzTmYCoXlHSqQhxK0xmHambielOWJ2p2ENMh+lOUF6lWDj5qlVAo4FJsLEKQetSiLFLinUmx2ECgUuKQng0xnyODSGOLAcDrUbKXjkGeqkfpTo0JOTUjDap+lAGF4BjC2+oHHPngH8F/wDr1074PFcz4EbMGpf9fWf/AB2ulI5zTr/xGKHwkPKnA6Uu0Fs+1Kw/OmM2CKkBeaTqaUsDmk6dqBgKU0gozmgA70AUZpaACjGBS9qQUALmkzinY9BxS7d3UUgEyp60ox60jJimMCBxQBJg9qRh04qNZSvWpVkV/rRZoY9eBTD64PPoadnANMbC4wCM0kBmqmFGazNUTaQ+DwetbQQFcVQvotyFT3HWt4vUkn0m586EAnJFXwQCTzz0rnNNnNrc7W4BOK6NeVyDUzVmBzPic+Xcr7ir3h05s1aszxY/7zdjGAK0vDw22EPbK5raS/dohbmyWwKjdxQzY461HgucdqwSLuRszMeBQluSfmqbATOBRuJPSquIRUVe1OzQATS4qRiZyad17CgAUZ5pDFxjpTS+KRmxTQS3anYQMxbinLH0zSqoqTb70mx2BRig8jBo5FIc0hmD4L/d3esQf3Z1b+Y/pXUGuU8NybfFGsxDoyq35MR/WuqNVX+O/oTHYjao3GcE1I2Qaa3K5qUBH0NPBzTT1pA2DTGSUYpAc0ozSASnYpDRQAvX1o70UtIBR0pQTmkFFIB3Sl47im0u7tQMa8QeocGNuasg0yRA4pp9xMXggAnGajlfaQG5PtTlwFCvUZ2uxPUdBTSERDB6d6r3kZwCBRazb1APWrJUEYPer2YGDMFf5l4YVsWk3m26nuODWfqVm0GZYhx3FGkXP7wxseGrRq6uiTG8Ut5k7qMkbQPxra09lhgjjyOFA/KsDW5N2qCI9RKFNWr+UxxxxhiHkPAFayj7qRMXqdOuQOTxSlqqacX+yoHJYgdTVrpXM0WKF9TTjjpTVYYxSg5oGOHFITR2pOtIBfpTaX6UmBQAmPxqRRSAU8Dikxiil6UhIAozSAM4o69aTrRQBz+lRm38bXinpLblh+YNdTXMiTZ42tcjG+2ZM+vGf6V1FVW3T8iY9SFiCaa7YU058KaiYZBqUMOtJQMUpPFMABwcU8GmU7HWgYufalpoFKKQC55pRTe9OpAOopAaXrSGGKNvejtS0ANO7HFRm4KHDr+NS59KSRRIpBprzEUtVv1sbRrlj8q+nr2FN0iWSSxR5TljkmszxJE1xZ21uM5N0gx7YNbVrGIoFUcACtmkqaM025GQPMt2ByWWtK3uFmTHeoCARyKg/wBXLleKHqUajKHXDDINYF/bvp1wsqZMJPX+6a3Scwbu9RBRcwtHKAykYNKErA0ch4k2jU9OvV4iumEbH0kX/Efyqp9s+263sBykYwKueJkEfh66x1tp4pYyeqsrjB/IkfjWF4fYvrdznsvH512L4fQx6no0LJHbqVIIxTJLkD2NZ0cjYK54p4Oetc3KaXLDTsemcGrcDtt+Y81nxcuB6VejJzSkhosYz3ozUbMRinZyM1Ax4xQDTQTilUnNIY8YFLnIpgPIpw6/iKQC07IpgPNKORQMXIpMmnY4zSHrigDk724ZPGun7gcBwg/EH/Gu5jxvVT3B/EgdK4rxN+713SXUAN5qc/8AAsV2RAfIYZANPEK8Y27CpuzYt3Gu1WC4JOMdKq7fapXYsQCSfrUWcZrOCaVmOTu7ojxSkGnDnOaM1YhpyBSg560vXrRigBQacMVGDTlPNJgPpQaZmnA0hiinA0gopALQD2pM0hODQA48dqTcBQrEnFQ3TmKKR16qjMM+wzTSAy5b6C71U20ZB+znLnsGI6fXB/WtIttAya43wV+8hSVyWklzI7HqzNyTXUXzsrIB6V01IWaiZQldXP/Z" alt="Mohamed Hakim Arbi"/>
+        <div class="photo-badge" data-i18n="photo_badge">Disponible · Tunis</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-      <h1 class="logo"><a href="index.html">DevFolio</a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-label" data-i18n="label_about">À propos</p>
+      <h2 class="section-title" data-i18n="title_about">Profil & Parcours</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p data-i18n="about_p1">Titulaire d'un <strong>Master de recherche en Systèmes Intelligents pour l'Imagerie et la Vision Artificielle</strong>, je suis actuellement en dernière année de cycle d'ingénieur en Génie Logiciel à l'Université Sésame de Tunis.</p>
+        <p data-i18n="about_p2">Mon parcours atypique, alliant vision artificielle, deep learning et développement full stack, me permet d'aborder les problèmes techniques avec une perspective analytique et une sensibilité à la performance.</p>
+        <p data-i18n="about_p3">Membre actif de l'IEEE SESAME Student Branch, je m'investis régulièrement dans des ateliers techniques, conférences et projets collaboratifs. Je recherche un environnement stimulant pour mettre en pratique mes compétences en architecture microservices et cloud.</p>
+      </div>
+      <div class="about-stats">
+        <div class="stat-card">
+          <div class="stat-num">6+</div>
+          <div class="stat-label" data-i18n="stat1">Projets académiques</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">3</div>
+          <div class="stat-label" data-i18n="stat2">Langues maîtrisées</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">10+</div>
+          <div class="stat-label" data-i18n="stat3">Technologies utilisées</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">AWS</div>
+          <div class="stat-label" data-i18n="stat4">Cloud certified</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-          <li><a class="nav-link scrollto" href="#about">About</a></li>
-          <li><a class="nav-link scrollto" href="#services">Services</a></li>
-          <li><a class="nav-link scrollto " href="#work">Work</a></li>
-          <li><a class="nav-link scrollto " href="#blog">Blog</a></li>
-          <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Drop Down 2</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
-            </ul>
-          </li>
-          <li><a class="nav-link scrollto" href="#contact">Contacts</a></li>
+<!-- SKILLS -->
+<section class="section section-alt" id="skills">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-label" data-i18n="label_skills">Compétences</p>
+      <h2 class="section-title" data-i18n="title_skills">Stack technique</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-icon">⚙️</div>
+        <div class="skill-cat" data-i18n="skill_cat_backend">Backend</div>
+        <div class="skill-title" data-i18n="skill_title_backend">Développement serveur</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Java</span><span class="skill-tag">Spring Boot</span>
+          <span class="skill-tag">Spring Security</span><span class="skill-tag">JWT</span>
+          <span class="skill-tag">REST API</span><span class="skill-tag">Microservices</span>
+          <span class="skill-tag">C# .NET</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🖥️</div>
+        <div class="skill-cat" data-i18n="skill_cat_frontend">Frontend</div>
+        <div class="skill-title" data-i18n="skill_title_frontend">Interfaces utilisateur</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Angular</span><span class="skill-tag">TypeScript</span>
+          <span class="skill-tag">React</span><span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">HTML5</span><span class="skill-tag">CSS3</span>
+          <span class="skill-tag">Bootstrap</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🗄️</div>
+        <div class="skill-cat" data-i18n="skill_cat_db">Données</div>
+        <div class="skill-title" data-i18n="skill_title_db">Bases de données</div>
+        <div class="skill-tags">
+          <span class="skill-tag">MongoDB</span><span class="skill-tag">MySQL</span>
+          <span class="skill-tag">PostgreSQL</span><span class="skill-tag">SQL Server</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">☁️</div>
+        <div class="skill-cat" data-i18n="skill_cat_devops">DevOps & Cloud</div>
+        <div class="skill-title" data-i18n="skill_title_devops">Infrastructure</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Docker</span><span class="skill-tag">Kubernetes</span>
+          <span class="skill-tag">GitHub Actions</span><span class="skill-tag">AWS</span>
+          <span class="skill-tag">Linux</span><span class="skill-tag">Maven</span>
+          <span class="skill-tag">Git</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🤖</div>
+        <div class="skill-cat" data-i18n="skill_cat_ai">IA & Data</div>
+        <div class="skill-title" data-i18n="skill_title_ai">Machine Learning</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span><span class="skill-tag">TensorFlow</span>
+          <span class="skill-tag">Keras</span><span class="skill-tag">CNN</span>
+          <span class="skill-tag">Deep Learning</span><span class="skill-tag">Pandas</span>
+          <span class="skill-tag">OpenCV</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🎮</div>
+        <div class="skill-cat" data-i18n="skill_cat_other">Autres</div>
+        <div class="skill-title" data-i18n="skill_title_other">Technologies diverses</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Unity</span><span class="skill-tag">VR</span>
+          <span class="skill-tag">WebSocket</span><span class="skill-tag">Eureka</span>
+          <span class="skill-tag">Agile / Scrum</span><span class="skill-tag">Swagger</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="section" id="projects">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-label" data-i18n="label_projects">Projets</p>
+      <h2 class="section-title" data-i18n="title_projects">Réalisations académiques</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-type" data-i18n="type_microservices">Microservices</span>
+        </div>
+        <div class="project-title" data-i18n="proj1_title">Marketplace Immobilier — Afaryet</div>
+        <p class="project-desc" data-i18n="proj1_desc">Marketplace immobilière tunisienne en architecture microservices. API Gateway sécurisée, services indépendants (annonces, utilisateurs, paiements, messagerie, recommandation IA), déployée sur cloud.</p>
+        <div class="project-stack">
+          <span class="stack-tag">Spring Boot</span><span class="stack-tag">Angular</span>
+          <span class="stack-tag">MongoDB</span><span class="stack-tag">Docker</span>
+          <span class="stack-tag">Kubernetes</span><span class="stack-tag">JWT</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-type" data-i18n="type_microservices">Microservices</span>
+        </div>
+        <div class="project-title" data-i18n="proj2_title">E-commerce microservices</div>
+        <p class="project-desc" data-i18n="proj2_desc">Application e-commerce avec microservices : Utilisateur (Customer/Admin avec JWT), Produit, Stock, Commande, Email. API Gateway + Eureka Server pour la découverte dynamique de services.</p>
+        <div class="project-stack">
+          <span class="stack-tag">React</span><span class="stack-tag">Spring Boot</span>
+          <span class="stack-tag">Eureka</span><span class="stack-tag">JWT</span>
+          <span class="stack-tag">MySQL</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-type" data-i18n="type_deeplearning">Deep Learning</span>
+        </div>
+        <div class="project-title" data-i18n="proj3_title">Reconnaissance faciale temps réel</div>
+        <p class="project-desc" data-i18n="proj3_desc">Mémoire de Master : système de reconnaissance des émotions et expressions faciales basé sur une architecture CNN profonde. Entraîné sur FER2013, optimisé pour un fonctionnement en temps réel.</p>
+        <div class="project-stack">
+          <span class="stack-tag">Python</span><span class="stack-tag">TensorFlow</span>
+          <span class="stack-tag">Keras</span><span class="stack-tag">CNN</span>
+          <span class="stack-tag">Pandas</span><span class="stack-tag">FER2013</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-type" data-i18n="type_fullstack">Full Stack</span>
+        </div>
+        <div class="project-title" data-i18n="proj4_title">Catalogue Free-to-Play (React)</div>
+        <p class="project-desc" data-i18n="proj4_desc">Application web de catalogue de jeux gratuits avec recherche, filtres par tags/plateformes, tri par popularité. Gestion des favoris (localStorage), détails en modal, lazy loading des images, API externe.</p>
+        <div class="project-stack">
+          <span class="stack-tag">React.js</span><span class="stack-tag">JavaScript</span>
+          <span class="stack-tag">REST API</span><span class="stack-tag">localStorage</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-type" data-i18n="type_realtime">Temps réel</span>
+        </div>
+        <div class="project-title" data-i18n="proj5_title">Application client-serveur WebSocket</div>
+        <p class="project-desc" data-i18n="proj5_desc">Application client-serveur C# permettant l'échange de messages en temps réel via WebSocket. Interface WinForms, logique serveur .NET, persistance SQL Server, communication fluide multi-clients.</p>
+        <div class="project-stack">
+          <span class="stack-tag">C#</span><span class="stack-tag">.NET</span>
+          <span class="stack-tag">WebSocket</span><span class="stack-tag">WinForms</span>
+          <span class="stack-tag">SQL Server</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-type" data-i18n="type_game">Jeu / VR</span>
+        </div>
+        <div class="project-title" data-i18n="proj6_title">Jeu 3D & Application VR (Unity)</div>
+        <p class="project-desc" data-i18n="proj6_desc">Jeu 3D style Subway Surfers avec obstacles dynamiques et système de score. Prototype VR avec scènes immersives et interactions de base, conçu pour démonstrations et tests.</p>
+        <div class="project-stack">
+          <span class="stack-tag">Unity</span><span class="stack-tag">C#</span>
+          <span class="stack-tag">3D</span><span class="stack-tag">VR</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="section section-alt" id="experience">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-label" data-i18n="label_exp">Expérience</p>
+      <h2 class="section-title" data-i18n="title_exp">Parcours professionnel</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date" data-i18n="exp1_date">2017 – 2021</div>
+        <div class="timeline-role" data-i18n="exp1_role">Mémoire de Master — Deep Learning</div>
+        <div class="timeline-org">Institut Supérieur d'Informatique, Tunis</div>
+        <ul class="timeline-desc">
+          <li data-i18n="exp1_b1">Conception d'un système CNN de reconnaissance des expressions faciales (FER2013)</li>
+          <li data-i18n="exp1_b2">Augmentation de données et optimisation pour temps réel</li>
+          <li data-i18n="exp1_b3">Stack : Python, Keras, TensorFlow, Pandas, OpenCV</li>
         </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date" data-i18n="exp2_date">2014 – 2017</div>
+        <div class="timeline-role" data-i18n="exp2_role">Stage PFE — Supervision réseau</div>
+        <div class="timeline-org">Institut Supérieur d'Informatique, Tunis</div>
+        <ul class="timeline-desc">
+          <li data-i18n="exp2_b1">Déploiement d'une solution open-source de supervision réseau (Nagios / Ubuntu)</li>
+          <li data-i18n="exp2_b2">Mise en place de notifications automatiques email/SMS pour la détection d'incidents</li>
+          <li data-i18n="exp2_b3">Documentation technique et administration système</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date" data-i18n="exp3_date">Juin – Juillet 2016</div>
+        <div class="timeline-role" data-i18n="exp3_role">Stage d'observation — Réseaux</div>
+        <div class="timeline-org">Tunisie Télécom</div>
+        <ul class="timeline-desc">
+          <li data-i18n="exp3_b1">Découverte de l'infrastructure réseau d'un opérateur télécom national</li>
+          <li data-i18n="exp3_b2">Observation des équipes techniques (maintenance, supervision, interventions)</li>
+        </ul>
+      </div>
 
     </div>
-  </header><!-- End Header -->
+  </div>
+</section>
 
-  <!-- ======= Hero Section ======= -->
-  <div id="hero" class="hero route bg-image" style="background-image: url(assets/img/hero-bg.jpg)">
-    <div class="overlay-itro"></div>
-    <div class="hero-content display-table">
-      <div class="table-cell">
-        <div class="container">
-          <!--<p class="display-6 color-d">Hello, world!</p>-->
-          <h1 class="hero-title mb-4">I am Mohamed Hakim Arbi</h1>
-          <p class="hero-subtitle"><span class="typed" data-typed-items="Designer, Developer, Freelancer, Photographer"></span></p>
-          <!-- <p class="pt-3"><a class="btn btn-primary btn js-scroll px-4" href="#about" role="button">Learn More</a></p> -->
-        </div>
+<!-- EDUCATION -->
+<section class="section" id="education">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-label" data-i18n="label_edu">Formation</p>
+      <h2 class="section-title" data-i18n="title_edu">Parcours académique</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <div class="edu-year" data-i18n="edu1_year">2023 – Présent</div>
+        <div class="edu-degree" data-i18n="edu1_degree">Cycle d'ingénieur — Génie Logiciel</div>
+        <div class="edu-school">Université Sésame, Tunis</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-year" data-i18n="edu2_year">2017 – 2021</div>
+        <div class="edu-degree" data-i18n="edu2_degree">Master de recherche — Systèmes Intelligents, Imagerie & Vision Artificielle</div>
+        <div class="edu-school">Institut Supérieur d'Informatique, Tunis</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-year" data-i18n="edu3_year">2014 – 2017</div>
+        <div class="edu-degree" data-i18n="edu3_degree">Licence appliquée — Réseaux Informatiques, Administration & Services</div>
+        <div class="edu-school">Institut Supérieur d'Informatique, Tunis</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-year">AWS Academy</div>
+        <div class="edu-degree" data-i18n="edu4_degree">AWS Academy Graduate — Cloud Foundations</div>
+        <div class="edu-school">Amazon Web Services</div>
       </div>
     </div>
-  </div><!-- End Hero Section -->
+  </div>
+</section>
 
-  <main id="main">
-
-    <!-- ======= About Section ======= -->
-    <section id="about" class="about-mf sect-pt4 route">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="box-shadow-full">
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="row">
-                    <div class="col-sm-6 col-md-5">
-                      <div class="about-img">
-                        <img src="assets/img/testimonial-2.jpg" class="img-fluid rounded b-shadow-a" alt="">
-                      </div>
-                    </div>
-                    <div class="col-sm-6 col-md-7">
-                      <div class="about-info">
-                        <p><span class="title-s">Name: </span> <span>Mohamed Hakim Arbi</span></p>
-                        <p><span class="title-s">Profile: </span> <span>full stack developer</span></p>
-                        <p><span class="title-s">Email: </span> <span>hakimarbi525@gmail.com</span></p>
-                        <p><span class="title-s">Phone: </span> <span>(+216) 96 476 781</span></p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="skill-mf">
-                    <p class="title-s">Skill</p>
-                    <span>HTML</span> <span class="pull-right">85%</span>
-                    <div class="progress">
-                      <div class="progress-bar" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                    <span>CSS3</span> <span class="pull-right">75%</span>
-                    <div class="progress">
-                      <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                    <span>PHP</span> <span class="pull-right">50%</span>
-                    <div class="progress">
-                      <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                    <span>JAVASCRIPT</span> <span class="pull-right">90%</span>
-                    <div class="progress">
-                      <div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="about-me pt-4 pt-md-0">
-                    <div class="title-box-2">
-                      <h5 class="title-left">
-                        About me
-                      </h5>
-                    </div>
-                    <p class="lead">
-                      Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Curabitur arcu erat, accumsan id
-                      imperdiet et, porttitor
-                      at sem. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Nulla
-                      porttitor accumsan tincidunt.
-                    </p>
-                    <p class="lead">
-                      Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vivamus suscipit tortor eget felis
-                      porttitor volutpat. Vestibulum
-                      ac diam sit amet quam vehicula elementum sed sit amet dui. porttitor at sem.
-                    </p>
-                    <p class="lead">
-                      Nulla porttitor accumsan tincidunt. Quisque velit nisi, pretium ut lacinia in, elementum id enim.
-                      Nulla porttitor accumsan
-                      tincidunt. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+<!-- CONTACT -->
+<section class="section section-alt" id="contact">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-label" data-i18n="label_contact">Contact</p>
+      <h2 class="section-title" data-i18n="title_contact">Travaillons ensemble</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <a class="contact-item" href="mailto:mohamedhakim.arbi@sesame.com.tn">
+          <div class="contact-icon">✉️</div>
+          <div class="contact-text">
+            <span class="contact-label">Email</span>
+            <span class="contact-value">mohamedhakim.arbi@sesame.com.tn</span>
+          </div>
+        </a>
+        <a class="contact-item" href="tel:+21696476781">
+          <div class="contact-icon">📞</div>
+          <div class="contact-text">
+            <span class="contact-label" data-i18n="contact_phone_label">Téléphone</span>
+            <span class="contact-value">+216 96 476 781</span>
+          </div>
+        </a>
+        <a class="contact-item" href="https://linkedin.com/in/mohamedhakim-arbi" target="_blank">
+          <div class="contact-icon">🔗</div>
+          <div class="contact-text">
+            <span class="contact-label">LinkedIn</span>
+            <span class="contact-value">mohamedhakim-arbi</span>
+          </div>
+        </a>
+        <a class="contact-item" href="https://github.com/hakim-arbi" target="_blank">
+          <div class="contact-icon">⌨️</div>
+          <div class="contact-text">
+            <span class="contact-label">GitHub</span>
+            <span class="contact-value">hakim-arbi</span>
+          </div>
+        </a>
+        <div class="contact-item" style="cursor:default;">
+          <div class="contact-icon">📍</div>
+          <div class="contact-text">
+            <span class="contact-label" data-i18n="contact_loc_label">Localisation</span>
+            <span class="contact-value">Ariana, Tunis — Tunisie</span>
           </div>
         </div>
       </div>
-    </section><!-- End About Section -->
-
-    <!-- ======= Services Section ======= -->
-    <section id="services" class="services-mf pt-5 route">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="title-box text-center">
-              <h3 class="title-a">
-                Services
-              </h3>
-              <p class="subtitle-a">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-              </p>
-              <div class="line-mf"></div>
-            </div>
-          </div>
+      <div>
+        <div class="contact-desc">
+          <p data-i18n="contact_desc1">Actuellement en fin de cycle ingénieur et à la recherche d'opportunités stimulantes en développement full stack, architecture microservices ou ingénierie logicielle.</p>
+          <p data-i18n="contact_desc2">Disponible pour un PFE, un stage ou un poste junior. N'hésitez pas à me contacter pour échanger sur vos projets.</p>
         </div>
-        <div class="row">
-          <div class="col-md-4">
-            <div class="service-box">
-              <div class="service-ico">
-                <span class="ico-circle"><i class="bi bi-briefcase"></i></span>
-              </div>
-              <div class="service-content">
-                <h2 class="s-title">Web Design</h2>
-                <p class="s-description text-center">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni adipisci eaque autem fugiat! Quia,
-                  provident vitae! Magni
-                  tempora perferendis eum non provident.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="service-box">
-              <div class="service-ico">
-                <span class="ico-circle"><i class="bi bi-card-checklist"></i></span>
-              </div>
-              <div class="service-content">
-                <h2 class="s-title">Web Development</h2>
-                <p class="s-description text-center">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni adipisci eaque autem fugiat! Quia,
-                  provident vitae! Magni
-                  tempora perferendis eum non provident.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="service-box">
-              <div class="service-ico">
-                <span class="ico-circle"><i class="bi bi-bar-chart"></i></span>
-              </div>
-              <div class="service-content">
-                <h2 class="s-title">Photography</h2>
-                <p class="s-description text-center">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni adipisci eaque autem fugiat! Quia,
-                  provident vitae! Magni
-                  tempora perferendis eum non provident.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="service-box">
-              <div class="service-ico">
-                <span class="ico-circle"><i class="bi bi-binoculars"></i></span>
-              </div>
-              <div class="service-content">
-                <h2 class="s-title">Responsive Design</h2>
-                <p class="s-description text-center">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni adipisci eaque autem fugiat! Quia,
-                  provident vitae! Magni
-                  tempora perferendis eum non provident.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="service-box">
-              <div class="service-ico">
-                <span class="ico-circle"><i class="bi bi-brightness-high"></i></span>
-              </div>
-              <div class="service-content">
-                <h2 class="s-title">Graphic Design</h2>
-                <p class="s-description text-center">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni adipisci eaque autem fugiat! Quia,
-                  provident vitae! Magni
-                  tempora perferendis eum non provident.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="service-box">
-              <div class="service-ico">
-                <span class="ico-circle"><i class="bi bi-calendar4-week"></i></span>
-              </div>
-              <div class="service-content">
-                <h2 class="s-title">Marketing Services</h2>
-                <p class="s-description text-center">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni adipisci eaque autem fugiat! Quia,
-                  provident vitae! Magni
-                  tempora perferendis eum non provident.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section><!-- End Services Section -->
-
-    <!-- ======= Counter Section ======= -->
-    <div class="section-counter paralax-mf bg-image" style="background-image: url(assets/img/counters-bg.jpg)">
-      <div class="overlay-mf"></div>
-      <div class="container position-relative">
-        <div class="row">
-          <div class="col-sm-3 col-lg-3">
-            <div class="counter-box counter-box pt-4 pt-md-0">
-              <div class="counter-ico">
-                <span class="ico-circle"><i class="bi bi-check"></i></span>
-              </div>
-              <div class="counter-num">
-                <p data-purecounter-start="0" data-purecounter-end="450" data-purecounter-duration="1" class="counter purecounter"></p>
-                <span class="counter-text">WORKS COMPLETED</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-3 col-lg-3">
-            <div class="counter-box pt-4 pt-md-0">
-              <div class="counter-ico">
-                <span class="ico-circle"><i class="bi bi-journal-richtext"></i></span>
-              </div>
-              <div class="counter-num">
-                <p data-purecounter-start="0" data-purecounter-end="25" data-purecounter-duration="1" class="counter purecounter"></p>
-                <span class="counter-text">YEARS OF EXPERIENCE</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-3 col-lg-3">
-            <div class="counter-box pt-4 pt-md-0">
-              <div class="counter-ico">
-                <span class="ico-circle"><i class="bi bi-people"></i></span>
-              </div>
-              <div class="counter-num">
-                <p data-purecounter-start="0" data-purecounter-end="550" data-purecounter-duration="1" class="counter purecounter"></p>
-                <span class="counter-text">TOTAL CLIENTS</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-3 col-lg-3">
-            <div class="counter-box pt-4 pt-md-0">
-              <div class="counter-ico">
-                <span class="ico-circle"><i class="bi bi-award"></i></span>
-              </div>
-              <div class="counter-num">
-                <p data-purecounter-start="0" data-purecounter-end="48" data-purecounter-duration="1" class="counter purecounter"></p>
-                <span class="counter-text">AWARD WON</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div><!-- End Counter Section -->
-
-    <!-- ======= Portfolio Section ======= -->
-    <section id="work" class="portfolio-mf sect-pt4 route">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="title-box text-center">
-              <h3 class="title-a">
-                Portfolio
-              </h3>
-              <p class="subtitle-a">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-              </p>
-              <div class="line-mf"></div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4">
-            <div class="work-box">
-              <a href="assets/img/work-1.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox">
-                <div class="work-img">
-                  <img src="assets/img/work-1.jpg" alt="" class="img-fluid">
-                </div>
-              </a>
-              <div class="work-content">
-                <div class="row">
-                  <div class="col-sm-8">
-                    <h2 class="w-title">Lorem impsum dolor</h2>
-                    <div class="w-more">
-                      <span class="w-ctegory">Web Design</span> / <span class="w-date">18 Sep. 2018</span>
-                    </div>
-                  </div>
-                  <div class="col-sm-4">
-                    <div class="w-like">
-                      <a href="portfolio-details.html"> <span class="bi bi-plus-circle"></span></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="work-box">
-              <a href="assets/img/work-2.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox">
-                <div class="work-img">
-                  <img src="assets/img/work-2.jpg" alt="" class="img-fluid">
-                </div>
-              </a>
-              <div class="work-content">
-                <div class="row">
-                  <div class="col-sm-8">
-                    <h2 class="w-title">Loreda Cuno Nere</h2>
-                    <div class="w-more">
-                      <span class="w-ctegory">Web Design</span> / <span class="w-date">18 Sep. 2018</span>
-                    </div>
-                  </div>
-                  <div class="col-sm-4">
-                    <div class="w-like">
-                      <a href="portfolio-details.html"> <span class="bi bi-plus-circle"></span></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="work-box">
-              <a href="assets/img/work-3.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox">
-                <div class="work-img">
-                  <img src="assets/img/work-3.jpg" alt="" class="img-fluid">
-                </div>
-              </a>
-              <div class="work-content">
-                <div class="row">
-                  <div class="col-sm-8">
-                    <h2 class="w-title">Mavrito Lana Dere</h2>
-                    <div class="w-more">
-                      <span class="w-ctegory">Web Design</span> / <span class="w-date">18 Sep. 2018</span>
-                    </div>
-                  </div>
-                  <div class="col-sm-4">
-                    <div class="w-like">
-                      <a href="portfolio-details.html"> <span class="bi bi-plus-circle"></span></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="work-box">
-              <a href="assets/img/work-4.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox">
-                <div class="work-img">
-                  <img src="assets/img/work-4.jpg" alt="" class="img-fluid">
-                </div>
-              </a>
-              <div class="work-content">
-                <div class="row">
-                  <div class="col-sm-8">
-                    <h2 class="w-title">Bindo Laro Cado</h2>
-                    <div class="w-more">
-                      <span class="w-ctegory">Web Design</span> / <span class="w-date">18 Sep. 2018</span>
-                    </div>
-                  </div>
-                  <div class="col-sm-4">
-                    <div class="w-like">
-                      <a href="portfolio-details.html"> <span class="bi bi-plus-circle"></span></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="work-box">
-              <a href="assets/img/work-5.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox">
-                <div class="work-img">
-                  <img src="assets/img/work-5.jpg" alt="" class="img-fluid">
-                </div>
-              </a>
-              <div class="work-content">
-                <div class="row">
-                  <div class="col-sm-8">
-                    <h2 class="w-title">Studio Lena Mado</h2>
-                    <div class="w-more">
-                      <span class="w-ctegory">Web Design</span> / <span class="w-date">18 Sep. 2018</span>
-                    </div>
-                  </div>
-                  <div class="col-sm-4">
-                    <div class="w-like">
-                      <a href="portfolio-details.html"> <span class="bi bi-plus-circle"></span></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="work-box">
-              <a href="assets/img/work-6.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox">
-                <div class="work-img">
-                  <img src="assets/img/work-6.jpg" alt="" class="img-fluid">
-                </div>
-              </a>
-              <div class="work-content">
-                <div class="row">
-                  <div class="col-sm-8">
-                    <h2 class="w-title">Studio Big Bang</h2>
-                    <div class="w-more">
-                      <span class="w-ctegory">Web Design</span> / <span class="w-date">18 Sep. 2017</span>
-                    </div>
-                  </div>
-                  <div class="col-sm-4">
-                    <div class="w-like">
-                      <a href="portfolio-details.html"> <span class="bi bi-plus-circle"></span></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section><!-- End Portfolio Section -->
-
-    <!-- ======= Testimonials Section ======= -->
-    <div class="testimonials paralax-mf bg-image" style="background-image: url(assets/img/overlay-bg.jpg)">
-      <div class="overlay-mf"></div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-
-            <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
-              <div class="swiper-wrapper">
-
-                <div class="swiper-slide">
-                  <div class="testimonial-box">
-                    <div class="author-test">
-                      <img src="assets/img/testimonial-2.jpg" alt="" class="rounded-circle b-shadow-a">
-                      <span class="author">Xavi Alonso</span>
-                    </div>
-                    <div class="content-test">
-                      <p class="description lead">
-                        Curabitur arcu erat, accumsan id imperdiet et, por   dq fbettitor at sem. Lorem ipsum dolor sit amet,
-                        consectetur adipiscing elit.
-                      </p>
-                    </div>
-                  </div>
-                </div><!-- End testimonial item -->
-
-                <div class="swiper-slide">
-                  <div class="testimonial-box">
-                    <div class="author-test">
-                      <img src="assets/img/testimonial-4.jpg" alt="" class="rounded-circle b-shadow-a">
-                      <span class="author">Marta Socrate</span>
-                    </div>
-                    <div class="content-test">
-                      <p class="description lead">
-                        Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Lorem ipsum dolor sit amet,
-                        consectetur adipiscing elit.
-                      </p>
-                    </div>
-                  </div>
-                </div><!-- End testimonial item -->
-              </div>
-              <div class="swiper-pagination"></div>
-            </div>
-
-            <!-- <div id="testimonial-mf" class="owl-carousel owl-theme">
-          
-        </div> -->
-          </div>
-        </div>
-      </div>
-    </div><!-- End Testimonials Section -->
-
-    <!-- ======= Blog Section ======= -->
-    <section id="blog" class="blog-mf sect-pt4 route">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="title-box text-center">
-              <h3 class="title-a">
-                Blog
-              </h3>
-              <p class="subtitle-a">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-              </p>
-              <div class="line-mf"></div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4">
-            <div class="card card-blog">
-              <div class="card-img">
-                <a href="blog-single.html"><img src="assets/img/post-1.jpg" alt="" class="img-fluid"></a>
-              </div>
-              <div class="card-body">
-                <div class="card-category-box">
-                  <div class="card-category">
-                    <h6 class="category">Travel</h6>
-                  </div>
-                </div>
-                <h3 class="card-title"><a href="blog-single.html">See more ideas about Travel</a></h3>
-                <p class="card-description">
-                  Proin eget tortor risus. Pellentesque in ipsum id orci porta dapibus. Praesent sapien massa, convallis
-                  a pellentesque nec,
-                  egestas non nisi.
-                </p>
-              </div>
-              <div class="card-footer">
-                <div class="post-author">
-                  <a href="#">
-                    <img src="assets/img/testimonial-2.jpg" alt="" class="avatar rounded-circle">
-                    <span class="author">Morgan Freeman</span>
-                  </a>
-                </div>
-                <div class="post-date">
-                  <span class="bi bi-clock"></span> 10 min
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card card-blog">
-              <div class="card-img">
-                <a href="blog-single.html"><img src="assets/img/post-2.jpg" alt="" class="img-fluid"></a>
-              </div>
-              <div class="card-body">
-                <div class="card-category-box">
-                  <div class="card-category">
-                    <h6 class="category">Web Design</h6>
-                  </div>
-                </div>
-                <h3 class="card-title"><a href="blog-single.html">See more ideas about Travel</a></h3>
-                <p class="card-description">
-                  Proin eget tortor risus. Pellentesque in ipsum id orci porta dapibus. Praesent sapien massa, convallis
-                  a pellentesque nec,
-                  egestas non nisi.
-                </p>
-              </div>
-              <div class="card-footer">
-                <div class="post-author">
-                  <a href="#">
-                    <img src="assets/img/testimonial-2.jpg" alt="" class="avatar rounded-circle">
-                    <span class="author">Morgan Freeman</span>
-                  </a>
-                </div>
-                <div class="post-date">
-                  <span class="bi bi-clock"></span> 10 min
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card card-blog">
-              <div class="card-img">
-                <a href="blog-single.html"><img src="assets/img/post-3.jpg" alt="" class="img-fluid"></a>
-              </div>
-              <div class="card-body">
-                <div class="card-category-box">
-                  <div class="card-category">
-                    <h6 class="category">Web Design</h6>
-                  </div>
-                </div>
-                <h3 class="card-title"><a href="blog-single.html">See more ideas about Travel</a></h3>
-                <p class="card-description">
-                  Proin eget tortor risus. Pellentesque in ipsum id orci porta dapibus. Praesent sapien massa, convallis
-                  a pellentesque nec,
-                  egestas non nisi.
-                </p>
-              </div>
-              <div class="card-footer">
-                <div class="post-author">
-                  <a href="#">
-                    <img src="assets/img/testimonial-2.jpg" alt="" class="avatar rounded-circle">
-                    <span class="author">Morgan Freeman</span>
-                  </a>
-                </div>
-                <div class="post-date">
-                  <span class="bi bi-clock"></span> 10 min
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section><!-- End Blog Section -->
-
-    <!-- ======= Contact Section ======= -->
-    <section id="contact" class="paralax-mf footer-paralax bg-image sect-mt4 route" style="background-image: url(assets/img/overlay-bg.jpg)">
-      <div class="overlay-mf"></div>
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="contact-mf">
-              <div id="contact" class="box-shadow-full">
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="title-box-2">
-                      <h5 class="title-left">
-                        Send Message Us
-                      </h5>
-                    </div>
-                    <div>
-                      <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-                        <div class="row">
-                          <div class="col-md-12 mb-3">
-                            <div class="form-group">
-                              <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
-                            </div>
-                          </div>
-                          <div class="col-md-12 mb-3">
-                            <div class="form-group">
-                              <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
-                            </div>
-                          </div>
-                          <div class="col-md-12 mb-3">
-                            <div class="form-group">
-                              <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
-                            </div>
-                          </div>
-                          <div class="col-md-12">
-                            <div class="form-group">
-                              <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
-                            </div>
-                          </div>
-                          <div class="col-md-12 text-center my-3">
-                            <div class="loading">Loading</div>
-                            <div class="error-message"></div>
-                            <div class="sent-message">Your message has been sent. Thank you!</div>
-                          </div>
-                          <div class="col-md-12 text-center">
-                            <button type="submit" class="button button-a button-big button-rouded">Send Message</button>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="title-box-2 pt-4 pt-md-0">
-                      <h5 class="title-left">
-                        Get in Touch
-                      </h5>
-                    </div>
-                    <div class="more-info">
-                      <p class="lead">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis dolorum dolorem soluta quidem
-                        expedita aperiam aliquid at.
-                        Totam magni ipsum suscipit amet? Autem nemo esse laboriosam ratione nobis
-                        mollitia inventore?
-                      </p>
-                      <ul class="list-ico">
-                        <li><span class="bi bi-geo-alt"></span> Ariana</li>
-                        <li><span class="bi bi-phone"></span>(+216) 96 476 781</li>
-                        <li><span class="bi bi-envelope"></span> hakimarbi525@gmail.com</li>
-                      </ul>
-                    </div>
-                    <div class="socials">
-                      <ul>
-                        <li><a href=""><span class="ico-circle"><i class="bi bi-facebook"></i></span></a></li>
-                        <li><a href=""><span class="ico-circle"><i class="bi bi-instagram"></i></span></a></li>
-                        <li><a href=""><span class="ico-circle"><i class="bi bi-twitter"></i></span></a></li>
-                        <li><a href=""><span class="ico-circle"><i class="bi bi-linkedin"></i></span></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section><!-- End Contact Section -->
-
-  </main><!-- End #main -->
-
-  <!-- ======= Footer ======= -->
-  <footer>
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="copyright-box">
-            <p class="copyright">&copy; Copyright <strong>DevFolio</strong>. All Rights Reserved</p>
-            <div class="credits">
-              <!--
-              All the links in the footer should remain intact.
-              You can delete the links only if you purchased the pro version.
-              Licensing information: https://bootstrapmade.com/license/
-              Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=DevFolio
-            -->
-              Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-            </div>
-          </div>
+        <div class="lang-badges">
+          <span class="lang-badge">🇹🇳 Arabe</span>
+          <span class="lang-badge">🇫🇷 Français</span>
+          <span class="lang-badge">🇬🇧 English</span>
         </div>
       </div>
     </div>
-  </footer><!-- End  Footer -->
+  </div>
+</section>
 
-  <div id="preloader"></div>
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+<footer>
+  <p>© 2026 Mohamed Hakim Arbi · <a href="https://linkedin.com/in/mohamedhakim-arbi" target="_blank">LinkedIn</a> · <a href="https://github.com/hakim-arbi" target="_blank">GitHub</a></p>
+</footer>
 
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/typed.js/typed.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
+<script>
+const i18n = {
+  fr: {
+    nav_about:"À propos", nav_skills:"Compétences", nav_projects:"Projets",
+    nav_experience:"Expérience", nav_contact:"Contact",
+    hero_subtitle:"Développeur Full Stack · Ingénieur Logiciel",
+    hero_desc:"Ingénieur en Génie Logiciel avec un Master en Systèmes Intelligents. Passionné par le développement de solutions microservices modernes, l'architecture cloud et les applications orientées performance.",
+    hero_cta1:"Me contacter", hero_cta2:"Voir mes projets",
+    photo_badge:"Disponible · Tunis",
+    label_about:"À propos", title_about:"Profil & Parcours",
+    about_p1:"Titulaire d'un <strong>Master de recherche en Systèmes Intelligents pour l'Imagerie et la Vision Artificielle</strong>, je suis actuellement en dernière année de cycle d'ingénieur en Génie Logiciel à l'Université Sésame de Tunis.",
+    about_p2:"Mon parcours atypique, alliant vision artificielle, deep learning et développement full stack, me permet d'aborder les problèmes techniques avec une perspective analytique et une sensibilité à la performance.",
+    about_p3:"Membre actif de l'IEEE SESAME Student Branch, je m'investis régulièrement dans des ateliers techniques, conférences et projets collaboratifs. Je recherche un environnement stimulant pour mettre en pratique mes compétences en architecture microservices et cloud.",
+    stat1:"Projets académiques", stat2:"Langues maîtrisées", stat3:"Technologies utilisées", stat4:"Cloud certified",
+    label_skills:"Compétences", title_skills:"Stack technique",
+    skill_cat_backend:"Backend", skill_title_backend:"Développement serveur",
+    skill_cat_frontend:"Frontend", skill_title_frontend:"Interfaces utilisateur",
+    skill_cat_db:"Données", skill_title_db:"Bases de données",
+    skill_cat_devops:"DevOps & Cloud", skill_title_devops:"Infrastructure",
+    skill_cat_ai:"IA & Data", skill_title_ai:"Machine Learning",
+    skill_cat_other:"Autres", skill_title_other:"Technologies diverses",
+    label_projects:"Projets", title_projects:"Réalisations académiques",
+    type_microservices:"Microservices", type_deeplearning:"Deep Learning",
+    type_fullstack:"Full Stack", type_realtime:"Temps réel", type_game:"Jeu / VR",
+    proj1_title:"Marketplace Immobilier — Afaryet",
+    proj1_desc:"Marketplace immobilière tunisienne en architecture microservices. API Gateway sécurisée, services indépendants (annonces, utilisateurs, paiements, messagerie, recommandation IA), déployée sur cloud.",
+    proj2_title:"E-commerce microservices",
+    proj2_desc:"Application e-commerce avec microservices : Utilisateur (Customer/Admin avec JWT), Produit, Stock, Commande, Email. API Gateway + Eureka Server pour la découverte dynamique de services.",
+    proj3_title:"Reconnaissance faciale temps réel",
+    proj3_desc:"Mémoire de Master : système de reconnaissance des émotions et expressions faciales basé sur une architecture CNN profonde. Entraîné sur FER2013, optimisé pour un fonctionnement en temps réel.",
+    proj4_title:"Catalogue Free-to-Play (React)",
+    proj4_desc:"Application web de catalogue de jeux gratuits avec recherche, filtres par tags/plateformes, tri par popularité. Gestion des favoris (localStorage), détails en modal, lazy loading des images, API externe.",
+    proj5_title:"Application client-serveur WebSocket",
+    proj5_desc:"Application client-serveur C# permettant l'échange de messages en temps réel via WebSocket. Interface WinForms, logique serveur .NET, persistance SQL Server, communication fluide multi-clients.",
+    proj6_title:"Jeu 3D & Application VR (Unity)",
+    proj6_desc:"Jeu 3D style Subway Surfers avec obstacles dynamiques et système de score. Prototype VR avec scènes immersives et interactions de base, conçu pour démonstrations et tests.",
+    label_exp:"Expérience", title_exp:"Parcours professionnel",
+    exp1_date:"2017 – 2021", exp1_role:"Mémoire de Master — Deep Learning",
+    exp1_b1:"Conception d'un système CNN de reconnaissance des expressions faciales (FER2013)",
+    exp1_b2:"Augmentation de données et optimisation pour temps réel",
+    exp1_b3:"Stack : Python, Keras, TensorFlow, Pandas, OpenCV",
+    exp2_date:"2014 – 2017", exp2_role:"Stage PFE — Supervision réseau",
+    exp2_b1:"Déploiement d'une solution open-source de supervision réseau (Nagios / Ubuntu)",
+    exp2_b2:"Mise en place de notifications automatiques email/SMS pour la détection d'incidents",
+    exp2_b3:"Documentation technique et administration système",
+    exp3_date:"Juin – Juillet 2016", exp3_role:"Stage d'observation — Réseaux",
+    exp3_b1:"Découverte de l'infrastructure réseau d'un opérateur télécom national",
+    exp3_b2:"Observation des équipes techniques (maintenance, supervision, interventions)",
+    label_edu:"Formation", title_edu:"Parcours académique",
+    edu1_year:"2023 – Présent", edu1_degree:"Cycle d'ingénieur — Génie Logiciel",
+    edu2_year:"2017 – 2021", edu2_degree:"Master de recherche — Systèmes Intelligents, Imagerie & Vision Artificielle",
+    edu3_year:"2014 – 2017", edu3_degree:"Licence appliquée — Réseaux Informatiques, Administration & Services",
+    edu4_degree:"AWS Academy Graduate — Cloud Foundations",
+    label_contact:"Contact", title_contact:"Travaillons ensemble",
+    contact_phone_label:"Téléphone", contact_loc_label:"Localisation",
+    contact_desc1:"Actuellement en fin de cycle ingénieur et à la recherche d'opportunités stimulantes en développement full stack, architecture microservices ou ingénierie logicielle.",
+    contact_desc2:"Disponible pour un PFE, un stage ou un poste junior. N'hésitez pas à me contacter pour échanger sur vos projets."
+  },
+  en: {
+    nav_about:"About", nav_skills:"Skills", nav_projects:"Projects",
+    nav_experience:"Experience", nav_contact:"Contact",
+    hero_subtitle:"Full Stack Developer · Software Engineer",
+    hero_desc:"Software engineering student with a Research Master's in Intelligent Systems. Passionate about microservices architecture, cloud deployment, and performance-driven applications.",
+    hero_cta1:"Get in touch", hero_cta2:"View projects",
+    photo_badge:"Available · Tunis",
+    label_about:"About", title_about:"Profile & Background",
+    about_p1:"Holder of a <strong>Research Master's in Intelligent Systems for Imaging and Computer Vision</strong>, I am currently in the final year of my Software Engineering degree at Sesame University, Tunis.",
+    about_p2:"My unique background, bridging computer vision, deep learning, and full stack development, allows me to approach technical challenges with an analytical mindset and a focus on performance.",
+    about_p3:"Active member of the IEEE SESAME Student Branch, I regularly participate in workshops, conferences and collaborative technical projects. I am seeking a stimulating environment to apply my microservices and cloud expertise.",
+    stat1:"Academic projects", stat2:"Languages spoken", stat3:"Technologies used", stat4:"Cloud certified",
+    label_skills:"Skills", title_skills:"Technical stack",
+    skill_cat_backend:"Backend", skill_title_backend:"Server-side development",
+    skill_cat_frontend:"Frontend", skill_title_frontend:"User interfaces",
+    skill_cat_db:"Data", skill_title_db:"Databases",
+    skill_cat_devops:"DevOps & Cloud", skill_title_devops:"Infrastructure",
+    skill_cat_ai:"AI & Data", skill_title_ai:"Machine Learning",
+    skill_cat_other:"Other", skill_title_other:"Miscellaneous technologies",
+    label_projects:"Projects", title_projects:"Academic projects",
+    type_microservices:"Microservices", type_deeplearning:"Deep Learning",
+    type_fullstack:"Full Stack", type_realtime:"Real-time", type_game:"Game / VR",
+    proj1_title:"Real Estate Marketplace — Afaryet",
+    proj1_desc:"Tunisian real estate marketplace on a microservices architecture. Secure API Gateway, independent services (listings, users, payments, messaging, AI recommendations), cloud-deployed.",
+    proj2_title:"E-commerce microservices app",
+    proj2_desc:"E-commerce application with microservices: User (Customer/Admin with JWT), Product, Inventory, Order, Email. API Gateway + Eureka Server for dynamic service discovery.",
+    proj3_title:"Real-time facial expression recognition",
+    proj3_desc:"Master's thesis: deep CNN-based system for facial emotion and expression recognition. Trained on FER2013, optimized for real-time operation with data augmentation techniques.",
+    proj4_title:"Free-to-Play game catalog (React)",
+    proj4_desc:"Web app cataloguing free games with search, tag/platform filters, and sorting by popularity. Favorites management with localStorage, game detail modals, lazy loading, external API.",
+    proj5_title:"Client-server WebSocket app",
+    proj5_desc:"C# client-server application enabling real-time message exchange via WebSocket. WinForms client interface, .NET server logic, SQL Server persistence, smooth multi-client communication.",
+    proj6_title:"3D game & VR application (Unity)",
+    proj6_desc:"Subway Surfers-style 3D infinite runner with dynamic obstacles and scoring system. VR prototype with immersive scenes and basic interactions, built for testing and demonstrations.",
+    label_exp:"Experience", title_exp:"Professional background",
+    exp1_date:"2017 – 2021", exp1_role:"Master's Thesis — Deep Learning",
+    exp1_b1:"Designed a deep CNN system for facial expression recognition (FER2013 dataset)",
+    exp1_b2:"Applied data augmentation and optimized for real-time performance",
+    exp1_b3:"Stack: Python, Keras, TensorFlow, Pandas, OpenCV",
+    exp2_date:"2014 – 2017", exp2_role:"Final Year Internship — Network monitoring",
+    exp2_b1:"Deployed an open-source network monitoring solution (Nagios on Ubuntu)",
+    exp2_b2:"Implemented automated email/SMS notifications for incident detection and tracking",
+    exp2_b3:"System administration, troubleshooting, and technical documentation",
+    exp3_date:"June – July 2016", exp3_role:"Observation internship — Networks",
+    exp3_b1:"Explored the network infrastructure of a national telecom operator",
+    exp3_b2:"Observed technical teams (maintenance, monitoring, field interventions)",
+    label_edu:"Education", title_edu:"Academic background",
+    edu1_year:"2023 – Present", edu1_degree:"Engineering Program — Software Engineering",
+    edu2_year:"2017 – 2021", edu2_degree:"Research Master's — Intelligent Systems for Imaging & Computer Vision",
+    edu3_year:"2014 – 2017", edu3_degree:"Applied Bachelor's — Computer Networks, Administration & Services",
+    edu4_degree:"AWS Academy Graduate — Cloud Foundations",
+    label_contact:"Contact", title_contact:"Let's work together",
+    contact_phone_label:"Phone", contact_loc_label:"Location",
+    contact_desc1:"Currently finishing my engineering degree and actively looking for exciting opportunities in full stack development, microservices architecture, or software engineering.",
+    contact_desc2:"Available for a final-year internship (PFE) or junior position. Feel free to reach out to discuss your projects."
+  }
+};
 
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+let lang = 'fr';
+function toggleLang(){
+  lang = lang === 'fr' ? 'en' : 'fr';
+  document.getElementById('langBtn').textContent = lang === 'fr' ? 'EN' : 'FR';
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.getAttribute('data-i18n');
+    if(i18n[lang][key] !== undefined) el.innerHTML = i18n[lang][key];
+  });
+}
 
+function toggleTheme(){
+  const body = document.body;
+  const isDark = body.getAttribute('data-theme')==='dark';
+  body.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  document.getElementById('themeBtn').textContent = isDark ? '◐' : '○';
+}
+
+// Smooth scroll for nav
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const target = document.querySelector(a.getAttribute('href'));
+    if(target){e.preventDefault();target.scrollIntoView({behavior:'smooth',block:'start'});}
+  });
+});
+</script>
 </body>
-
 </html>
